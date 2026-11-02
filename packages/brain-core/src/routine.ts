@@ -21,18 +21,27 @@ export function routineTaskId(templateId: string, itemId: string, date: string):
   return `${id.slice(0, 8)}-${id.slice(8, 12)}-${id.slice(12, 16)}-${id.slice(16, 20)}-${id.slice(20)}`;
 }
 
-export function createDefaultRoutineTemplate(templateId = DEFAULT_TEMPLATE_ID): RoutineTemplate {
-  const titles = [
-    "確認今日行程與會議",
-    "確認今天誰生日並傳送祝福",
-    "檢查並回覆電子郵件",
-    "運動",
-    "今日喝足 3000cc 水",
-    "背英文單字",
-  ];
+export function createDefaultRoutineTemplate(templateId = DEFAULT_TEMPLATE_ID, language: "zh-TW" | "en" = "zh-TW"): RoutineTemplate {
+  const titles = language === "en"
+    ? [
+        "Check today's schedule and meetings",
+        "Check whose birthday it is and send wishes",
+        "Check and answer email",
+        "Exercise",
+        "Drink 3 liters of water",
+        "Practice vocabulary",
+      ]
+    : [
+        "確認今日行程與會議",
+        "確認今天誰生日並傳送祝福",
+        "檢查並回覆電子郵件",
+        "運動",
+        "今日喝足 3000cc 水",
+        "背英文單字",
+      ];
   return {
     id: templateId,
-    name: "每日啟動模板",
+    name: language === "en" ? "Daily starter template" : "每日啟動模板",
     version: 1,
     updatedAt: new Date(0).toISOString(),
     items: titles.map((title, index) => ({

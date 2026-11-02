@@ -209,6 +209,7 @@ export type { OutcomeKnowledgeInput } from "./knowledge";
 export {
   parsePluginExport,
   renderPluginExport,
+  isPromptCategory,
   promptToCollection,
   collectionToPrompt,
   toCollectionCategory,

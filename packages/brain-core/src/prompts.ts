@@ -133,27 +133,33 @@ export function renderPluginExport(
   );
 }
 
-/** Map a plugin category to a collection category under the 提示詞 root. */
+const EN_PROMPT_ROOT_CATEGORY = "Prompts";
+
+/** Whether a collection category sits under the 提示詞 or Prompts root. */
+export function isPromptCategory(category: string | null | undefined): boolean {
+  const lowered = (category ?? "").trim().toLocaleLowerCase();
+  const enRoot = EN_PROMPT_ROOT_CATEGORY.toLocaleLowerCase();
+  return lowered.startsWith(PROMPT_ROOT_CATEGORY) || lowered === enRoot || lowered.startsWith(`${enRoot}/`);
+}
+
+/** Map a plugin category to a collection category under the vault's prompt root. */
 export function toCollectionCategory(
   pluginCategory: string,
+  root: string = PROMPT_ROOT_CATEGORY,
 ): string {
   const trimmed = pluginCategory.trim();
-  if (!trimmed) return PROMPT_ROOT_CATEGORY;
-  const lowered = trimmed.toLocaleLowerCase();
-  const rootPrefix = `${PROMPT_ROOT_CATEGORY.toLocaleLowerCase()}/`;
-  // Already under the 提示詞 root (or equal to it) — return as-is.
-  if (lowered === PROMPT_ROOT_CATEGORY.toLocaleLowerCase() || lowered.startsWith(rootPrefix)) {
-    return trimmed;
-  }
-  return `${PROMPT_ROOT_CATEGORY}/${trimmed}`;
+  if (!trimmed) return root;
+  // Already under a prompt root (or equal to it) — return as-is.
+  if (isPromptCategory(trimmed)) return trimmed;
+  return `${root}/${trimmed}`;
 }
 
 /** Convert one plugin prompt record into a collection snapshot (no id assigned). */
 export function promptToCollection(
   prompt: PluginPromptRecord,
-  now: () => string = () => new Date().toISOString(),
+  root: string = PROMPT_ROOT_CATEGORY,
 ): Omit<BrainCollectionSnapshot, "id"> & { id: string | null } {
-  const category = toCollectionCategory(prompt.category);
+  const category = toCollectionCategory(prompt.category, root);
   return {
     schemaVersion: 6,
     id: prompt.id && /^[0-9a-f-]{36}$/i.test(prompt.id) ? prompt.id : null,
@@ -176,11 +182,10 @@ export function collectionToPrompt(
 ): PluginPromptRecord {
   const category = collection.category ?? "";
   const trimmed = category.trim();
-  // Strip the leading 提示詞/ root so the plugin sees the plain sub-category.
-  const root = PROMPT_ROOT_CATEGORY.toLocaleLowerCase();
-  const pluginCategory = trimmed.toLocaleLowerCase().startsWith(`${root}/`)
-    ? trimmed.slice(PROMPT_ROOT_CATEGORY.length + 1).trim()
-    : trimmed;
+  // Strip the leading prompt root so the plugin sees the plain sub-category.
+  const lowered = trimmed.toLocaleLowerCase();
+  const root = [PROMPT_ROOT_CATEGORY, EN_PROMPT_ROOT_CATEGORY].find((name) => lowered.startsWith(`${name.toLocaleLowerCase()}/`));
+  const pluginCategory = root ? trimmed.slice(root.length + 1).trim() : trimmed;
   const out: PluginPromptRecord = {
     name: collection.name,
     category: pluginCategory,

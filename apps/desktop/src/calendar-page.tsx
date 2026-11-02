@@ -235,8 +235,8 @@ export function Calendar({
     if (!id) return;
     const target = tasks.find((task) => task.id === id);
     flashNotice(target
-      ? (startTime ? `「${target.title}」已排到 ${date} ${startTime}` : `「${target.title}」已排到 ${date}`)
-      : `任務已排到 ${date}`);
+      ? (startTime ? t("calendar.scheduledAt", { title: target.title, date, time: startTime }) : t("calendar.scheduled", { title: target.title, date }))
+      : t("calendar.scheduledAnon", { date }));
     void onSave(
       tasks.map((task) => (task.id === id ? scheduleTask(task, date, startTime) : task)),
     );
@@ -429,7 +429,7 @@ export function Calendar({
         {notice && (
           <div className="calendar-notice" role="status">
             {notice}
-            <button onClick={() => setNotice(null)} aria-label="關閉提示">×</button>
+            <button onClick={() => setNotice(null)} aria-label={t("notice.dismiss")}>×</button>
           </div>
         )}
         <div className="calendar-stage" data-plain-marquee-scope>
@@ -536,8 +536,8 @@ export function Calendar({
                             type="button"
                             className="calendar-task-drag-handle"
                             data-drag-handle
-                            aria-label={`拖曳 ${entry.task.title}`}
-                            title="拖曳到其他日期（已選取時會一次拖全部）"
+                            aria-label={t("task.dragNamed", { title: entry.task.title })}
+                            title={t("calendar.dragHintSelected")}
                             onPointerDown={(event) => {
                               if (event.button !== 0 || !entry.task.id) return;
                               event.stopPropagation();
@@ -560,10 +560,10 @@ export function Calendar({
                         </span>
                       ))}
                       {dayEntries.length > 4 && (
-                        <small>＋{dayEntries.length - 4} 項</small>
+                        <small>{t("calendar.moreItems", { count: dayEntries.length - 4 })}</small>
                       )}
                     </div>
-                    {dragTaskId && <i className="drop-hint">拖到這一天排程</i>}
+                    {dragTaskId && <i className="drop-hint">{t("calendar.dropHere")}</i>}
                   </section>
                 );
               })}
@@ -588,12 +588,7 @@ export function Calendar({
                     >
                       <span>{dateLabel(date)}</span>
                       <small>
-                        {
-                          dayEntries.filter(
-                            (entry) => entry.task.status !== "done",
-                          ).length
-                        }{" "}
-                        項待辦
+                        {t("calendar.pendingCount", { count: dayEntries.filter((entry) => entry.task.status !== "done").length })}
                       </small>
                     </button>
                     <button
@@ -650,8 +645,8 @@ export function Calendar({
                             type="button"
                             className="calendar-task-drag-handle"
                             data-drag-handle
-                            aria-label={`拖曳 ${entry.task.title}`}
-                            title="拖曳到其他日期（已選取時會一次拖全部）"
+                            aria-label={t("task.dragNamed", { title: entry.task.title })}
+                            title={t("calendar.dragHintSelected")}
                             onPointerDown={(event) => {
                               if (event.button !== 0 || !entry.task.id) return;
                               event.stopPropagation();
@@ -677,14 +672,14 @@ export function Calendar({
                           <strong>{taskLabel(entry.task)}</strong>
                         </div>
                         <small>
-                          {entry.task.projectName ?? "無專案"}
+                          {entry.task.projectName ?? t("app.unassigned")}
                         </small>
                         <div className="week-task-actions"><DangerConfirmButton armLabel={t("task.action.delete")} confirmLabel={t("confirm.deleteAgain")} onConfirm={() => remove(entry.task)} /></div>
                       </article>
                     ))}
                   </div>
                   {dragTaskId && (
-                    <div className="week-drop">拖到這一天排程</div>
+                    <div className="week-drop">{t("calendar.dropHere")}</div>
                   )}
                 </section>
               );
@@ -744,8 +739,8 @@ export function Calendar({
                     type="button"
                     className="idea-drag-handle"
                     data-drag-handle
-                    aria-label={`拖曳 ${task.title}`}
-                    title="拖曳到日期"
+                    aria-label={t("task.dragNamed", { title: task.title })}
+                    title={t("calendar.dragHintDate")}
                     onPointerDown={(event) => {
                       if (event.button !== 0 || !task.id) return;
                       beginDrag(task.id, null, event.clientX, event.clientY);
@@ -790,7 +785,7 @@ export function Calendar({
                   </div>
                   <DangerConfirmButton
                     className="idea-delete-button"
-                    armLabel={`永久刪除想法「${task.title}」`}
+                    armLabel={t("calendar.deleteIdea", { title: task.title })}
                     confirmLabel={t("confirm.deleteAgain")}
                     onConfirm={() => remove(task)}
                   />
@@ -804,7 +799,7 @@ export function Calendar({
               className="idea-expand-button"
               onClick={() => setIdeasExpanded((value) => !value)}
             >
-              {ideasExpanded ? "收合想法" : `顯示其餘 ${ideas.length - 8} 項想法`}
+              {ideasExpanded ? t("calendar.collapseIdeas") : t("calendar.moreIdeas", { count: ideas.length - 8 })}
             </button>
           )}
         </section>
@@ -812,7 +807,7 @@ export function Calendar({
           <div
             className="idea-context-menu"
             role="menu"
-            aria-label={`${ideaContextMenu.task.title}的操作`}
+            aria-label={t("calendar.ideaActions", { title: ideaContextMenu.task.title })}
             style={{ left: ideaContextMenu.x, top: ideaContextMenu.y }}
             onClick={(event) => event.stopPropagation()}
           >
@@ -909,11 +904,7 @@ export function Calendar({
               <span className="eyebrow">{t("calendar.dayPlan")}</span>
               <h3>{selected}</h3>
               <small>
-                {
-                  selectedTasks.filter(({ task }) => task.status !== "done")
-                    .length
-                }{" "}
-                項待完成
+                {t("calendar.remainingCount", { count: selectedTasks.filter(({ task }) => task.status !== "done").length })}
               </small>
             </div>
             <div>
@@ -924,7 +915,7 @@ export function Calendar({
                 <Clock aria-hidden="true" />
                 {t("calendar.planTimes")}
               </button>
-              <button className="icon-button" onClick={() => setSideOpen(false)} aria-label="關閉側面板">
+              <button className="icon-button" onClick={() => setSideOpen(false)} aria-label={t("calendar.closeSide")}>
                 <X aria-hidden="true" />
               </button>
             </div>
@@ -941,8 +932,8 @@ export function Calendar({
               >
                 <button
                   className="agenda-drag-handle"
-                  aria-label={`拖曳 ${task.title}`}
-                  title="拖曳到其他日期"
+                  aria-label={t("task.dragNamed", { title: task.title })}
+                  title={t("calendar.dragHintOther")}
                   onPointerDown={(event) => {
                     if (event.button === 0) {
                       beginDrag(task.id, date, event.clientX, event.clientY);
@@ -976,26 +967,26 @@ export function Calendar({
                   </div>
                   <select
                     className="agenda-project-select"
-                    aria-label={`${task.title} 所屬專案`}
+                    aria-label={t("calendar.taskProject", { title: task.title })}
                     value={task.projectId ?? ""}
                     onChange={(event) => {
                       const project = projects.find((item) => item.id === event.target.value);
                       void onSave(tasks.map((item) => item.id === task.id ? { ...item, projectId: project?.id ?? null, projectName: project?.name ?? null } : item));
                     }}
                   >
-                    <option value="">無專案</option>
+                    <option value="">{t("app.unassigned")}</option>
                     {projects.map((project) => <option key={project.id ?? project.name} value={project.id ?? ""}>{project.name}</option>)}
                   </select>
                 </div>
                 <TaskDateInput
-                  ariaLabel={`${task.title}規劃日`}
+                  ariaLabel={t("calendar.taskDate", { title: task.title })}
                   value={task.taskDate ?? null}
                   onCommit={(nextDate) => {
                     if (nextDate) {
                       setSelected(nextDate);
-                      flashNotice(`「${task.title}」已排到 ${nextDate}`);
+                      flashNotice(t("calendar.scheduled", { title: task.title, date: nextDate }));
                     } else {
-                      flashNotice(`「${task.title}」已移回想法匣`);
+                      flashNotice(t("calendar.movedToIdeas", { title: task.title }));
                     }
                     void onSave(
                       tasks.map((item) =>

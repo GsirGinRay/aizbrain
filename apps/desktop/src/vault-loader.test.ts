@@ -92,3 +92,22 @@ test("loading activates the vault's folder layout, and an empty vault takes the 
     setActiveVaultLayout(ZH_TW_VAULT_LAYOUT);
   }
 });
+
+test("a new inbox in an English vault gets an English heading", async () => {
+  const { applyDesiredSnapshot, scanStructuredVault } = await import("./vault");
+  const { EN_VAULT_LAYOUT } = await import("@second-brain/brain-core");
+  setActiveVaultLayout(EN_VAULT_LAYOUT);
+  try {
+    const scanned = scanStructuredVault([], () => "11111111-1111-4111-8111-111111111111").snapshot;
+    const task: BrainTaskSnapshot = {
+      schemaVersion: 6, id: "22222222-2222-4222-8222-222222222222", title: "First task", status: "todo", priority: "normal",
+      taskDate: null, startTime: null, durationMinutes: null, projectId: null, projectName: null, completedAt: null,
+    } as BrainTaskSnapshot;
+    const [change] = applyDesiredSnapshot([], { ...scanned, tasks: [task] });
+    assert.equal(change?.relativePath, "Inbox/Inbox.md");
+    const written = Buffer.from(change!.replacementBase64, "base64").toString("utf8");
+    assert.match(written, /^# Inbox\r\n\r\n## New Task\r\n/);
+  } finally {
+    setActiveVaultLayout(ZH_TW_VAULT_LAYOUT);
+  }
+});

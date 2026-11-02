@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  isPromptCategory,
   collectionToPrompt,
   extractPromptVariables,
   fillPromptVariables,
@@ -59,11 +60,7 @@ test("toCollectionCategory prefixes the 提示詞 root and normalizes", () => {
 });
 
 test("promptToCollection produces a collection in the 提示詞 category", () => {
-  const now = () => "2026-08-15T00:00:00.000Z";
-  const col = promptToCollection(
-    { name: "股票分析", category: "投資分析", content: "body" },
-    now,
-  );
+  const col = promptToCollection({ name: "股票分析", category: "投資分析", content: "body" });
   assert.equal(col.category, "提示詞/投資分析");
   assert.equal(col.name, "股票分析");
   assert.equal(col.body, "body");
@@ -108,4 +105,17 @@ test("fillPromptVariables replaces known variables and keeps unknown", () => {
       { 目標: "上市" }),
     "目標 上市 權重 [權重|60%] 未知 [x]",
   );
+});
+
+test("English vaults keep prompts under the Prompts root", () => {
+  assert.equal(isPromptCategory("Prompts/Meetings"), true);
+  assert.equal(isPromptCategory("Prompts"), true);
+  assert.equal(isPromptCategory("提示詞/會議"), true);
+  assert.equal(isPromptCategory("Promptly"), false);
+  assert.equal(isPromptCategory(null), false);
+  assert.equal(toCollectionCategory("Meetings", "Prompts"), "Prompts/Meetings");
+  assert.equal(toCollectionCategory("Prompts/Meetings", "Prompts"), "Prompts/Meetings");
+  const col = promptToCollection({ name: "n", category: "Meetings", content: "c" }, "Prompts");
+  assert.equal(col.category, "Prompts/Meetings");
+  assert.equal(collectionToPrompt({ ...col, id: null }).category, "Meetings");
 });

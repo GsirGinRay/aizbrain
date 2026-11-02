@@ -5,6 +5,7 @@ import {
   fillPromptVariables,
   knowledgeFilterCategories,
   type BrainCollectionSnapshot,
+  isPromptCategory,
 } from "@second-brain/brain-core";
 import {
   Plus,
@@ -49,7 +50,7 @@ export function Collections({
   const [category, setCategory] = useState("all");
   const [importance, setImportance] = useState("all");
   const categories = knowledgeFilterCategories(collections.map((item) => item.category));
-  const promptCount = collections.filter((item) => (item.category ?? "").trim().toLowerCase().startsWith("提示詞")).length;
+  const promptCount = collections.filter((item) => isPromptCategory(item.category)).length;
   const visible = collections
     .filter((item) => collectionMatchesCategoryFilter(item.category, category))
     .filter((item) => importance === "all" || String(item.importance ?? "unset") === importance)
@@ -141,7 +142,7 @@ export function CollectionEditor({
     },
     delayMs: autosaveDelayMs,
   });
-  const isPrompt = (value.category ?? "").trim().toLowerCase().startsWith("提示詞");
+  const isPrompt = isPromptCategory(value.category);
   const variables = useMemo(() => extractPromptVariables(value.body), [value.body]);
   const [fillValues, setFillValues] = useState<Record<string, string>>({});
   const [fillOpen, setFillOpen] = useState(false);

@@ -193,8 +193,8 @@ export function VaultAttachmentView({ href, alt, children, as = "link", width, o
     return (
       <div className="vault-image-resize" ref={frameRef} style={width ? { width } : undefined}>
         {image}
-        <button type="button" className="vault-image-resize-handle west" aria-label="縮小圖片" onPointerDown={(event) => startResize(event, "w")} />
-        <button type="button" className="vault-image-resize-handle east" aria-label="放大圖片" onPointerDown={(event) => startResize(event, "e")} />
+        <button type="button" className="vault-image-resize-handle west" aria-label={locale === "en" ? "Shrink image" : "縮小圖片"} onPointerDown={(event) => startResize(event, "w")} />
+        <button type="button" className="vault-image-resize-handle east" aria-label={locale === "en" ? "Enlarge image" : "放大圖片"} onPointerDown={(event) => startResize(event, "e")} />
       </div>
     );
   }

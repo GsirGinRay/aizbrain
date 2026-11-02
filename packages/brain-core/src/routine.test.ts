@@ -105,3 +105,10 @@ test("enforceTemplateSingleP1 keeps the first ranked P1 and passes valid templat
   assert.equal(enforceTemplateSingleP1(createDefaultRoutineTemplate()).items.filter(
     (item) => item.priority === "highest").length, 0);
 });
+
+test("default routine template follows the interface language", () => {
+  const english = createDefaultRoutineTemplate("t", "en");
+  assert.equal(english.name, "Daily starter template");
+  assert.ok(english.items.every((item) => !/[\u4e00-\u9fff]/.test(item.title)));
+  assert.equal(createDefaultRoutineTemplate("t").name, "每日啟動模板");
+});

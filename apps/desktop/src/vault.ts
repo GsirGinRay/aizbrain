@@ -907,7 +907,7 @@ export function applyDesiredSnapshot(
   const sourceForWrite = (writePath: string): string => {
     if (currentSources.has(writePath)) return currentSources.get(writePath)!;
     createdPaths.add(writePath);
-    const blank = "# 待辦\r\n\r\n## 新增 Task\r\n";
+    const blank = activeVaultLayout().locale === "en" ? "# Inbox\r\n\r\n## New Task\r\n" : "# 待辦\r\n\r\n## 新增 Task\r\n";
     currentSources.set(writePath, blank);
     return blank;
   };

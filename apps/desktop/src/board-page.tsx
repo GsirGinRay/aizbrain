@@ -548,7 +548,7 @@ export function Board({
                     tabIndex={0}
                   >
                     <div className="task-title-row">
-                      <button type="button" className="board-drag-handle" data-drag-handle aria-label={`拖曳 ${task.title}`} onClick={(event) => event.stopPropagation()}>
+                      <button type="button" className="board-drag-handle" data-drag-handle aria-label={t("task.dragNamed", { title: task.title })} onClick={(event) => event.stopPropagation()}>
                         <GripVertical aria-hidden="true" />
                       </button>
                       <TaskCompleteButton
@@ -569,7 +569,7 @@ export function Board({
                     <div className="board-date-field" onPointerDown={(event) => event.stopPropagation()}>
                       <TaskDateInput
                         className="board-date-input"
-                        ariaLabel={`修改 ${task.title} 日期`}
+                        ariaLabel={t("task.editDate", { title: task.title })}
                         value={task.taskDate ?? null}
                         onCommit={(next) => void onSave(tasks.map((item) => item.id === task.id ? { ...item, taskDate: next } : item))}
                       />

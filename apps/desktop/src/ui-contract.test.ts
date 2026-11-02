@@ -137,7 +137,7 @@ test("idea inbox is calm by default and supports accessible quick deletion", () 
   const styles = css();
   assert.match(source, /ideasExpanded \? ideas : ideas\.slice\(0, 8\)/);
   assert.match(source, /className="idea-delete-button"/);
-  assert.match(source, /armLabel=\{`永久刪除想法/);
+  assert.match(source, /armLabel=\{t\("calendar\.deleteIdea"/);
   assert.match(source, /onContextMenu=/);
   assert.match(source, /role="menu"/);
   assert.match(styles, /\.idea-card-body/);
@@ -634,4 +634,22 @@ test("the sidebar names the app AIzBrain in English and 第二大腦 in Chinese"
   // "AI" gets its own colour so a sans-serif I is not read as an l ("Alz").
   assert.match(app(), /<BrandName name=\{t\("app\.name"\)\} \/>/);
   assert.match(css(), /\.brand-ai\s*\{/);
+});
+
+test("translate fills placeholders once and keeps user text literal", async () => {
+  const { translate } = await import("./ui-preferences");
+  const title = "$& {date}";
+  assert.equal(translate("en", "calendar.scheduled", { title, date: "2026-11-02" }), `“${title}” scheduled for 2026-11-02`);
+});
+
+test("status, error and label text in the main pages goes through t()", () => {
+  const hardCoded = /(?:aria-label|ariaLabel|title|armLabel)=(?:"[^"]*[一-鿿]|\{`[^`]*[一-鿿])|set(?:Status|Error)\(\s*[`"][^`"]*[一-鿿]/;
+  assert.equal(hardCoded.exec(app())?.[0] ?? null, null);
+});
+
+test("every interface string exists in both languages", async () => {
+  const { translate } = await import("./ui-preferences");
+  const keys = [...readFileSync(resolve(import.meta.dirname, "ui-preferences.ts"), "utf8").matchAll(/^\s*"([a-zA-Z][\w.]*)":\s*"/gm)].map((match) => match[1]!);
+  const missing = keys.filter((key) => translate("en", key) === key || translate("zh-TW", key) === key);
+  assert.deepEqual(missing, []);
 });

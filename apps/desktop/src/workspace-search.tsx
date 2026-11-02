@@ -103,9 +103,9 @@ export function WorkspaceSearch({
           <select aria-label={t("search.filter.kind")} value={kindFilter} onChange={(event) => setKindFilter(event.target.value as typeof kindFilter)}><option value="all">{t("search.allKinds")}</option><option value="task">{t("search.kind.task")}</option><option value="project">{t("search.kind.project")}</option><option value="collection">{t("search.kind.collection")}</option></select>
           <span>{t("search.results", { count: results.length })}</span>
         </div>
-        {queryError && <div className="search-error" role="status">{queryError}</div>}
+        {queryError && <div className="search-error" role="status">{t(queryError === "引號尚未關閉" ? "search.error.quote" : "search.error.incomplete")}</div>}
         {actions && actions.length > 0 && !query && (
-          <div className="search-commands" aria-label="快速動作">
+          <div className="search-commands" aria-label={t("search.quickActions")}>
             {actions.map((command) => (
               <button
                 key={command.label}

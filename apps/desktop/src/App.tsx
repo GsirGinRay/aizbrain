@@ -14,6 +14,7 @@ import {
   layoutMigrationHasWork,
   parsePluginExport,
   planVaultLayoutMigration,
+  isPromptCategory,
   promptToCollection,
   relatedKnowledgeForProject,
   renderPluginExport,
@@ -170,6 +171,8 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
     (key, values) => translate(preferences.language, key, values),
     [preferences.language],
   );
+  const tRef = useRef(t);
+  tRef.current = t;
   // An empty vault gets folders named in the interface language.
   const languageRef = useRef(preferences.language);
   languageRef.current = preferences.language;
@@ -213,9 +216,9 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
     projectId: string | null;
     category: string;
   } | null>(null);
-  const [routineTemplate, setRoutineTemplate] = useState<RoutineTemplate>(() => createDefaultRoutineTemplate(crypto.randomUUID()));
+  const [routineTemplate, setRoutineTemplate] = useState<RoutineTemplate>(() => createDefaultRoutineTemplate(crypto.randomUUID(), preferences.language));
   const [files, setFiles] = useState<LocalMarkdownFile[]>([]);
-  const [status, setStatus] = useState("正在啟動…");
+  const [status, setStatus] = useState(() => t("app.starting"));
   const [error, setError] = useState("");
   const [working, setWorking] = useState(false);
   const [architectureOpen, setArchitectureOpen] = useState(false);
@@ -238,7 +241,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
   const [updatePromptOpen, setUpdatePromptOpen] = useState(false);
 
   const promptCollections = collections.filter((item) =>
-    (item.category ?? "").trim().toLowerCase().startsWith("提示詞"),
+    isPromptCategory(item.category),
   );
   const activeDetail = detailTargets.find((target) => target.key === activeDetailKey) ?? null;
   const selectedTask = activeDetail?.kind === "task" ? tasks.find((task) => task.id === activeDetail.id) ?? null : null;
@@ -278,7 +281,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
     const next = [
       ...collections,
       ...imported.map((prompt) => ({
-        ...promptToCollection(prompt),
+        ...promptToCollection(prompt, activeVaultLayout().promptsCategory),
         id: crypto.randomUUID(),
       })),
     ];
@@ -593,7 +596,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
       );
       if (indexChange) changes.push(indexChange);
       if (changes.length === 0) {
-        setStatus("知識架構已存在，未覆寫任何既有檔案");
+        setStatus(t("arch.exists"));
         setArchitectureOpen(false);
         return;
       }
@@ -602,7 +605,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
       setPendingScaffold(changes);
       setArchitectureOpen(false);
     } catch (cause) {
-      setError(`準備知識架構失敗：${describeError(cause, "SCAFFOLD_PREP_FAILED")}`);
+      setError(t("arch.prepFailed", { error: describeError(cause, "SCAFFOLD_PREP_FAILED") }));
     } finally {
       setWorking(false);
     }
@@ -636,7 +639,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
       );
       if (indexChange) changes.push(indexChange);
       if (changes.length === 0) {
-        setStatus("知識架構已存在，未覆寫任何既有檔案");
+        setStatus(t("arch.exists"));
         return;
       }
       const teachFirstRun = pendingScaffold.some((change) =>
@@ -644,9 +647,9 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
       );
       await native.applyMarkdownChanges(changes);
       await reloadLocal();
-      setStatus(teachFirstRun ? "示範內容已建立，可直接改名或刪除" : "知識架構已建立");
+      setStatus(t(teachFirstRun ? "arch.demoCreated" : "arch.created"));
     } catch (cause) {
-      setError(`建立知識架構失敗：${describeError(cause, "SCAFFOLD_FAILED")}`);
+      setError(t("arch.failed", { error: describeError(cause, "SCAFFOLD_FAILED") }));
     } finally {
       setPendingScaffold(null);
       setScaffoldPreviewPaths([]);
@@ -694,7 +697,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
       setPendingLayoutFiles(allFiles);
       setPendingLayoutPlan(plan);
     } catch (cause) {
-      setError(`準備整理失敗：${describeError(cause, "LAYOUT_PREP_FAILED")}`);
+      setError(t("layout.prepFailed", { error: describeError(cause, "LAYOUT_PREP_FAILED") }));
     } finally {
       setWorking(false);
     }
@@ -714,7 +717,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
       await reloadLocal();
       setStatus(t("layout.done"));
     } catch (cause) {
-      setError(`整理資料夾失敗：${describeError(cause, "LAYOUT_FAILED")}`);
+      setError(t("layout.failed", { error: describeError(cause, "LAYOUT_FAILED") }));
     } finally {
       setPendingLayoutPlan(null);
       setPendingLayoutFiles(null);
@@ -733,7 +736,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
         setTasks(draft.tasks);
         setProjects(draft.projects);
         setCollections(draft.collections);
-        if (updateStatus) setStatus(hasDraftContent(draft) ? "內容已暫存在這台裝置；關閉前請選擇 Markdown 資料夾" : "可先建立內容，關閉前再選擇 Markdown 資料夾");
+        if (updateStatus) setStatus(tRef.current(hasDraftContent(draft) ? "draft.hasContent" : "draft.empty"));
         return;
       }
       if (hasDraftContent(loadDraftWorkspace())) await flushDraftsToSelectedVault();
@@ -750,16 +753,16 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
       if (scanWarnings.length > 0) {
         const describeIssue = (issue: string) =>
           issue === "unparsable"
-            ? "標記無法解析"
+            ? tRef.current("scan.unparsable")
             : issue === "duplicate-id"
-              ? "id 與其他任務重複"
-              : "標記 id 不安全";
+              ? tRef.current("scan.duplicateId")
+              : tRef.current("scan.unsafeId");
         const shown = scanWarnings
           .slice(0, 3)
-          .map((w) => `${w.relativePath} 第 ${w.line} 行（${describeIssue(w.issue)}）`)
-          .join("；");
-        const more = scanWarnings.length > 3 ? `，等共 ${scanWarnings.length} 處` : "";
-        setError(`任務標記異常已自動修復：${shown}${more}。原文已保留，僅重建機器標記；來源可能是中斷的同步寫入或手動編輯，建議確認該行內容無誤。`);
+          .map((w) => tRef.current("scan.item", { path: w.relativePath, line: w.line, issue: describeIssue(w.issue) }))
+          .join(tRef.current("scan.separator"));
+        const more = scanWarnings.length > 3 ? tRef.current("scan.more", { count: scanWarnings.length }) : "";
+        setError(tRef.current("scan.repaired", { items: shown, more }));
       }
       const signatures = new Map(
         local.files.map((file) => [file.relativePath, file.sha256]),
@@ -805,7 +808,11 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
       }
       if (updateStatus)
         setStatus(
-          `已載入 ${local.tasks.length} 項任務 · ${local.projects.length} 個專案 · ${local.collections.length} 篇知識`,
+          translate(languageRef.current, "app.loadedSummary", {
+            tasks: local.tasks.length,
+            projects: local.projects.length,
+            knowledge: local.collections.length,
+          }),
         );
       return local;
     },
@@ -825,7 +832,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
     void reloadLocal().catch((cause) => {
       const message =
         describeError(cause, "DIAGNOSTICS_FAILED");
-      setError(`App 啟動診斷失敗：${message}`);
+      setError(tRef.current("app.diagnosticsFailed", { error: message }));
     });
   }, [reloadLocal]);
 
@@ -975,7 +982,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
       setTasks(nextTasks);
       setProjects(nextProjects);
       setCollections(nextCollections);
-      setStatus("已暫存在這台裝置；關閉前請選擇 Markdown 資料夾");
+      setStatus(t("draft.saved"));
       return true;
     }
     // Always re-read the file snapshot right before computing the diff so
@@ -1018,7 +1025,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
     setError("");
     try {
       await native.applyMarkdownChanges(changes);
-      setStatus("已寫入本機 Markdown 資料夾");
+      setStatus(t("app.written"));
       await reloadLocal(true, true, true);
       return true;
     } catch (cause) {
@@ -1041,7 +1048,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
             }, { tasks: fresh.tasks, projects: fresh.projects, collections: fresh.collections ?? [] });
             if (retryChanges.length > 0) {
               await native.applyMarkdownChanges(retryChanges);
-              setStatus("已寫入本機 Markdown 資料夾");
+              setStatus(t("app.written"));
               await reloadLocal(true, true, true);
               return true;
             }
@@ -1050,7 +1057,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
           // fall through and surface the original failure
         }
       }
-      setError(`本機寫入失敗：${message}`);
+      setError(t("app.writeFailed", { error: message }));
       return false;
     } finally {
       setWorking(false);
@@ -1095,7 +1102,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
     } catch (cause) {
       // The scan before the write can fail too (a file removed mid-read, a
       // copied project file); the edit is already on screen, so say so.
-      setError(`本機寫入失敗：${describeError(cause, "WRITE_FAILED")}`);
+      setError(t("app.writeFailed", { error: describeError(cause, "WRITE_FAILED") }));
     }
     if (!ok) {
       // The edit is on screen but not on disk: show the disk again, or at
@@ -1263,7 +1270,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
       const nextProjects = [...projects, project];
       const nextTasks = promotedTask ? tasks.map((task) => task.id === promotedTask.id ? { ...task, projectId: id, projectName: name.trim() } : task) : tasks;
       await persistLocal(nextTasks, nextProjects);
-      setStatus(promotedTask ? "想法已升級為規劃中專案草稿" : "已建立規劃中專案草稿");
+      setStatus(t(promotedTask ? "project.promotedDraft" : "project.createdDraft"));
       return { id, name: name.trim() };
     }
     setWorking(true);
@@ -1292,10 +1299,10 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
           : create;
         return [...otherChanges, projectChange];
       });
-      setStatus(promotedTask ? "想法已升級為規劃中專案" : "已建立規劃中專案");
+      setStatus(t(promotedTask ? "project.promoted" : "project.created"));
       return { id, name: name.trim() };
     } catch (cause) {
-      setError(`建立專案失敗：${describeError(cause, "CREATE_PROJECT_FAILED")}`);
+      setError(t("project.createFailed", { error: describeError(cause, "CREATE_PROJECT_FAILED") }));
       return null;
     } finally {
       setWorking(false);
@@ -1306,7 +1313,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
     if (!diagnostics?.selectedVault) {
       const collection: BrainCollectionSnapshot = { schemaVersion: 6, id: crypto.randomUUID(), name: name.trim(), sourcePath: null, category, importance, body };
       await persistLocal(tasks, projects, [...collections, collection]);
-      setStatus("已建立知識草稿；關閉前請選擇 Markdown 資料夾");
+      setStatus(t("collection.createdDraft"));
       return true;
     }
     setWorking(true);
@@ -1315,10 +1322,10 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
       await queuedVaultWrite((current) => [
         buildCollectionCreateChange(name, category, importance, current.files.map((file) => file.relativePath), undefined, body),
       ]);
-      setStatus("知識已建立；內容保留在本機 Markdown");
+      setStatus(t("collection.created"));
       return true;
     } catch (cause) {
-      setError(`建立知識失敗：${describeError(cause, "CREATE_COLLECTION_FAILED")}`);
+      setError(t("collection.createFailed", { error: describeError(cause, "CREATE_COLLECTION_FAILED") }));
       return false;
     } finally {
       setWorking(false);
@@ -1366,9 +1373,9 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
         collections: current.collections,
         fileHashes: {},
       }, projectId));
-      setStatus("專案已刪除，關聯任務已保留並解除連結");
+      setStatus(t("project.deleted"));
     } catch (cause) {
-      setError(`刪除專案失敗：${describeError(cause, "DELETE_PROJECT_FAILED")}`);
+      setError(t("project.deleteFailed", { error: describeError(cause, "DELETE_PROJECT_FAILED") }));
     } finally {
       setWorking(false);
     }
@@ -1406,10 +1413,10 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
         if (!ok) return false;
       }
       if (selectedCollectionId === collection.id) setSelectedCollectionId(null);
-      setStatus("知識已刪除");
+      setStatus(t("collection.deleted"));
       return true;
     } catch (cause) {
-      setError(`刪除知識失敗：${describeError(cause, "DELETE_COLLECTION_FAILED")}`);
+      setError(t("collection.deleteFailed", { error: describeError(cause, "DELETE_COLLECTION_FAILED") }));
       return false;
     } finally {
       setWorking(false);
@@ -1422,7 +1429,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
     setWorking(true);
     setError("");
     const deleted = await persistLocal(tasks.filter((item) => task.id ? item.id !== task.id : item !== task));
-    if (deleted) setStatus("任務已從本機 Markdown 永久刪除");
+    if (deleted) setStatus(t("task.deleted"));
     setWorking(false);
   }
 
@@ -1464,7 +1471,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
       await reloadLocal();
     } catch (cause) {
       setError(
-        `無法使用此資料夾：${describeError(cause, "VAULT_SELECTION_FAILED")}`,
+        t("vault.useFailed", { error: describeError(cause, "VAULT_SELECTION_FAILED") }),
       );
     } finally {
       setWorking(false);
@@ -1485,7 +1492,7 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
       return true;
     } catch (cause) {
       setError(
-        `無法選擇資料夾：${describeError(cause, "FOLDER_PICKER_FAILED")}`,
+        t("vault.pickFailed", { error: describeError(cause, "FOLDER_PICKER_FAILED") }),
       );
       return false;
     } finally {
@@ -1938,17 +1945,17 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
             if (event.target === event.currentTarget) setArchitectureOpen(false);
           }}
         >
-          <section className="modal" role="dialog" aria-modal="true" aria-label="建立知識架構">
+          <section className="modal" role="dialog" aria-modal="true" aria-label={t("arch.title")}>
             <div className="modal-header">
               <div>
                 <span className="eyebrow">KNOWLEDGE ARCHITECTURE</span>
-                <h2>建立知識架構</h2>
+                <h2>{t("arch.title")}</h2>
               </div>
-              <button className="icon-button" onClick={() => setArchitectureOpen(false)} aria-label="關閉" title="關閉">
+              <button className="icon-button" onClick={() => setArchitectureOpen(false)} aria-label={t("app.close")} title={t("app.close")}>
                 <X aria-hidden="true" />
               </button>
             </div>
-            <p>預設只勾專案管理與個人知識庫。提示詞庫、模板套件與 AI 委任之後需要再加。已存在的檔案不會被覆寫。</p>
+            <p>{t("arch.help")}</p>
             <div className="architecture-pack-list">
               {templatePacks(preferences.language).map((pack) => (
                 <label key={pack.id} className="architecture-pack">
@@ -1971,13 +1978,13 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
               ))}
             </div>
             <div className="modal-actions">
-              <button className="secondary-button" onClick={() => setArchitectureOpen(false)}>取消</button>
+              <button className="secondary-button" onClick={() => setArchitectureOpen(false)}>{t("app.cancel")}</button>
               <button
                 className="primary action-with-icon"
                 disabled={working || selectedPacks.length === 0}
                 onClick={() => void prepareArchitecture()}
               >
-                <Plus aria-hidden="true" />建立架構
+                <Plus aria-hidden="true" />{t("arch.build")}
               </button>
             </div>
           </section>
@@ -1985,13 +1992,13 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
       )}
       {pendingScaffold && (
         <div className="modal-backdrop">
-          <section className="modal" role="dialog" aria-modal="true" aria-label="確認知識架構">
-            <div className="modal-header"><div><span className="eyebrow">HUMAN REVIEW</span><h2>確認將建立的檔案</h2></div></div>
-            <p>以下檔案會在審核後一次建立（含可驗證備份）。取消則不會寫入任何檔案。</p>
+          <section className="modal" role="dialog" aria-modal="true" aria-label={t("arch.reviewLabel")}>
+            <div className="modal-header"><div><span className="eyebrow">HUMAN REVIEW</span><h2>{t("arch.reviewTitle")}</h2></div></div>
+            <p>{t("arch.reviewHelp")}</p>
             <ul className="review-list">{scaffoldPreviewPaths.map((path) => (<li key={path}><code>{path}</code></li>))}</ul>
             <div className="modal-actions">
-              <button className="secondary-button" onClick={() => { setPendingScaffold(null); setScaffoldPreviewPaths([]); }}>取消</button>
-              <button className="primary" disabled={working} onClick={() => void confirmArchitecture()}>執行並建立</button>
+              <button className="secondary-button" onClick={() => { setPendingScaffold(null); setScaffoldPreviewPaths([]); }}>{t("app.cancel")}</button>
+              <button className="primary" disabled={working} onClick={() => void confirmArchitecture()}>{t("arch.reviewConfirm")}</button>
             </div>
           </section>
         </div>
@@ -2038,27 +2045,27 @@ export function App({ adapter: providedAdapter }: { adapter?: NativeAdapter }) {
       )}
       {importPromptsOpen && (
         <div className="modal-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) setImportPromptsOpen(false); }}>
-          <section className="modal" role="dialog" aria-modal="true" aria-label="匯入提示詞">
-            <div className="modal-header"><div><span className="eyebrow">PROMPT LIBRARY</span><h2>匯入提示詞</h2></div><button className="icon-button" onClick={() => setImportPromptsOpen(false)} aria-label="關閉" title="關閉"><X aria-hidden="true" /></button></div>
-            <p>貼上「AI 提示詞 Plus」擴充匯出的 JSON（物件或純陣列）。每支提示詞會成為一筆「提示詞/…」分類的知識。</p>
+          <section className="modal" role="dialog" aria-modal="true" aria-label={t("prompts.importTitle")}>
+            <div className="modal-header"><div><span className="eyebrow">PROMPT LIBRARY</span><h2>{t("prompts.importTitle")}</h2></div><button className="icon-button" onClick={() => setImportPromptsOpen(false)} aria-label={t("app.close")} title={t("app.close")}><X aria-hidden="true" /></button></div>
+            <p>{t("prompts.importHelp", { root: activeVaultLayout().promptsCategory })}</p>
             <textarea className="prompt-json" rows={10} placeholder='{"version":"2.0.7","prompts":[{"name":"…","category":"…","content":"…"}]}' value={importText} onChange={(event) => setImportText(event.target.value)} />
             {importError && <p className="prompt-error" role="alert">{importError}</p>}
             <div className="modal-actions">
-              <button className="secondary-button" onClick={() => setImportPromptsOpen(false)}>取消</button>
-              <button className="primary" disabled={!importText.trim()} onClick={doImportPrompts}>匯入</button>
+              <button className="secondary-button" onClick={() => setImportPromptsOpen(false)}>{t("app.cancel")}</button>
+              <button className="primary" disabled={!importText.trim()} onClick={doImportPrompts}>{t("prompts.import")}</button>
             </div>
           </section>
         </div>
       )}
       {exportPromptsOpen && (
         <div className="modal-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) setExportPromptsOpen(false); }}>
-          <section className="modal" role="dialog" aria-modal="true" aria-label="匯出提示詞">
-            <div className="modal-header"><div><span className="eyebrow">PROMPT LIBRARY</span><h2>匯出提示詞</h2></div><button className="icon-button" onClick={() => setExportPromptsOpen(false)} aria-label="關閉" title="關閉"><X aria-hidden="true" /></button></div>
-            <p>複製下方 JSON，在「AI 提示詞 Plus」擴充中匯入即可重複使用。</p>
+          <section className="modal" role="dialog" aria-modal="true" aria-label={t("prompts.exportTitle")}>
+            <div className="modal-header"><div><span className="eyebrow">PROMPT LIBRARY</span><h2>{t("prompts.exportTitle")}</h2></div><button className="icon-button" onClick={() => setExportPromptsOpen(false)} aria-label={t("app.close")} title={t("app.close")}><X aria-hidden="true" /></button></div>
+            <p>{t("prompts.exportHelp")}</p>
             <textarea className="prompt-json" readOnly rows={12} value={exportText} />
             <div className="modal-actions">
-              <button className="secondary-button" onClick={() => setExportPromptsOpen(false)}>關閉</button>
-              <button className="primary" onClick={() => { void navigator.clipboard?.writeText(exportText); setExportCopied(true); }}>{exportCopied ? "已複製 ✓" : "複製"}</button>
+              <button className="secondary-button" onClick={() => setExportPromptsOpen(false)}>{t("app.close")}</button>
+              <button className="primary" onClick={() => { void navigator.clipboard?.writeText(exportText); setExportCopied(true); }}>{t(exportCopied ? "prompts.copied" : "prompts.copy")}</button>
             </div>
           </section>
         </div>

@@ -876,8 +876,8 @@ export function DaySchedule({
                           type="button"
                           className={`tray-star ${task.priority === "highest" ? "active" : ""}`}
                           aria-pressed={task.priority === "highest"}
-                          aria-label={labels.important ?? "重要"}
-                          title={labels.important ?? "重要"}
+                          aria-label={labels.important ?? (locale === "zh-TW" ? "重要" : "Important")}
+                          title={labels.important ?? (locale === "zh-TW" ? "重要" : "Important")}
                           onClick={(event) => {
                             event.stopPropagation();
                             onStar(task.id!);
@@ -900,7 +900,7 @@ export function DaySchedule({
                             onSelect={(project) => onPickProject(task.id!, project ? { id: project.id, name: project.name } : null)}
                             onCreateProject={onCreateProject}
                             locale={locale}
-                            ariaLabel={`${task.title} 專案`}
+                            ariaLabel={locale === "zh-TW" ? `${task.title} 專案` : `Project of ${task.title}`}
                           />
                         </div>
                       )}
@@ -1109,8 +1109,8 @@ export function DaySchedule({
                         type="button"
                         className={`timed-block-action tray-star ${task.priority === "highest" ? "active" : ""}`}
                         aria-pressed={task.priority === "highest"}
-                        aria-label={labels.important ?? "重要"}
-                        title={labels.important ?? "重要"}
+                        aria-label={labels.important ?? (locale === "zh-TW" ? "重要" : "Important")}
+                        title={labels.important ?? (locale === "zh-TW" ? "重要" : "Important")}
                         onClick={(event) => {
                           event.stopPropagation();
                           onStar(task.id!);
