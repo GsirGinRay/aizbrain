@@ -1,6 +1,6 @@
 # aizbrain
 
-One shared, local memory for your AI coding tools. Run one command in any folder, and Claude Code, Codex, Gemini CLI and Antigravity all start from the same plan and leave notes for each other. It is plain Markdown: no account, no cloud, no database, and no desktop app required.
+One shared, local memory for your AI coding tools. Run one command in any folder, and Claude Code, Codex, Antigravity and other AI tools all start from the same plan and leave notes for each other. It is plain Markdown: no account, no cloud, no database, and no desktop app required.
 
 ```bash
 npx aizbrain init my-brain
@@ -19,7 +19,7 @@ Then open that folder in your AI tool and ask "What should I work on today?" Whe
 
 | Command | What it does |
 | --- | --- |
-| `aizbrain init [folder]` | Set up a folder. Options: `--locale en\|zh-TW`, `--tools claude,gemini,antigravity,codex`, `--no-hooks`, `--dry-run`, `--yes` |
+| `aizbrain init [folder]` | Set up a folder. Options: `--locale en\|zh-TW`, `--tools claude,antigravity,codex`, `--no-hooks`, `--dry-run`, `--yes` |
 | `aizbrain today [folder]` | Today's most important task, today's tasks and recent handoffs |
 | `aizbrain index [folder]` | Rebuild `.ai/INDEX.md` |
 | `aizbrain doctor [folder]` | What is set up, tool by tool |

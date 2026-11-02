@@ -2,6 +2,10 @@
 
 Older versions are on the [releases page](https://github.com/GsirGinRay/aizbrain/releases).
 
+## CLI 0.1.1
+
+- `aizbrain` no longer connects or lists Gemini CLI. Folders that already have its hooks can still run `aizbrain hook uninstall gemini`.
+
 ## 0.9.6 (2026-11-02)
 - No changes to the app. The website and README now cover local files and the one-task-a-day habit.
 

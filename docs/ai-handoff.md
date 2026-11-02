@@ -42,7 +42,7 @@ npx aizbrain doctor my-second-brain   # what is connected, in plain words
 npx aizbrain hook install codex my-second-brain
 ```
 
-`init` never overwrites existing files. Hook settings that belong to the folder (Claude Code and Grok Build, Gemini CLI, Antigravity) are installed by default. Codex keeps its hooks in a per-user file, so `init` touches it only when you ask with `--tools codex`. Before changing a settings file, a copy is saved as `<file>.aizbrain-backup`.
+`init` never overwrites existing files. Hook settings that belong to the folder (Claude Code and Grok Build, Antigravity) are installed by default. Codex keeps its hooks in a per-user file, so `init` touches it only when you ask with `--tools codex`. Before changing a settings file, a copy is saved as `<file>.aizbrain-backup`.
 
 The desktop app can build the same files from **Settings → Build architecture → AI handoff**. It keeps `.ai/INDEX.md` up to date while it runs. Without the app, the CLI hook refreshes that one file at session start.
 

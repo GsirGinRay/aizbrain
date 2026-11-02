@@ -11,8 +11,10 @@ import { atomicReplace, resolveOwnFilePath } from "./vault-fs";
 
 export type HookTool = "claude" | "codex" | "gemini" | "antigravity";
 
-export const VAULT_HOOK_TOOLS: readonly HookTool[] = ["claude", "gemini", "antigravity"];
-export const ALL_HOOK_TOOLS: readonly HookTool[] = [...VAULT_HOOK_TOOLS, "codex"];
+export const VAULT_HOOK_TOOLS: readonly HookTool[] = ["claude", "antigravity"];
+export const LISTED_HOOK_TOOLS: readonly HookTool[] = [...VAULT_HOOK_TOOLS, "codex"];
+/** Gemini CLI is unlisted, but folders set up by 0.1.0 can still have its hooks to find and remove. */
+export const ALL_HOOK_TOOLS: readonly HookTool[] = [...LISTED_HOOK_TOOLS, "gemini"];
 export const HOOK_SCRIPT_PATH = ".ai/bin/aizbrain-hook.mjs";
 /** The name of our entry in an Antigravity `hooks.json`. */
 const ANTIGRAVITY_HOOK_NAME = "aizbrain";

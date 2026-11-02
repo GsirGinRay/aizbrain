@@ -10,7 +10,7 @@ import { parseArgs } from "node:util";
 import type { BrainTaskSnapshot, VaultLocale } from "@second-brain/brain-core";
 import { emitOutcome, findVaultRoot, HOOK_FLAG, runHookEvent } from "./hook";
 import {
-  ALL_HOOK_TOOLS,
+  LISTED_HOOK_TOOLS,
   HOOK_SCRIPT_PATH,
   HookConfigError,
   installHook,
@@ -31,14 +31,14 @@ declare const __AIZBRAIN_VERSION__: string;
 const VERSION = typeof __AIZBRAIN_VERSION__ === "string" ? __AIZBRAIN_VERSION__ : "0.0.0-dev";
 
 const HELP = `aizbrain ${VERSION}
-One shared, local Markdown memory for Claude Code, Codex, Gemini CLI and Antigravity.
+One shared, local Markdown memory for your AI tools.
 
 Usage: aizbrain <command>
 
   init [folder]              Set up this folder (about 30 seconds, nothing to install)
     --locale en|zh-TW          Language of the folder names and instructions
     --tools a,b                Which AI tools to connect
-                               Default: claude,gemini,antigravity. Add codex to include it.
+                               Default: claude,antigravity. Add codex to include it.
     --no-hooks                 Do not connect any AI tool
     --dry-run                  Show what would happen and change nothing
     --yes                      Do not ask before using a folder that already has files
@@ -48,7 +48,7 @@ Usage: aizbrain <command>
   doctor [folder]            Check what is set up, tool by tool
   hook install <tool> [folder]    Connect an AI tool
   hook uninstall <tool> [folder]  Disconnect an AI tool
-                               Tools: claude (also Grok Build), gemini, antigravity, codex
+                               Tools: claude (also Grok Build), antigravity, codex
   mcp [--vault folder]       Run the MCP server, for apps such as Claude Desktop
 
   --help, -h                 Show this help
@@ -191,7 +191,7 @@ async function commandInit(args: string[]): Promise<number> {
   const locale = values.locale;
   if (locale !== undefined && locale !== "en" && locale !== "zh-TW") return fail(`Unknown language "${locale}". Use en or zh-TW.`);
   const parsed = values.tools === undefined ? [...VAULT_HOOK_TOOLS] : parseTools(values.tools);
-  if (typeof parsed === "string") return fail(`Unknown tool "${parsed}". Use claude, gemini, antigravity or codex.`);
+  if (typeof parsed === "string") return fail(`Unknown tool "${parsed}". Use claude, antigravity or codex.`);
   const folder = path.resolve(positionals[0] ?? ".");
   const language = (locale as VaultLocale | undefined) ?? systemLocale();
   if (isHomeFolder(folder) && !values.yes) {
@@ -325,7 +325,7 @@ function commandDoctor(args: string[]): number {
   const hasScript = fs.existsSync(path.join(folder, ...HOOK_SCRIPT_PATH.split("/")));
   say(hasScript ? pick(locale, `Helper: ${HOOK_SCRIPT_PATH} is there.`, `小幫手：有 ${HOOK_SCRIPT_PATH}。`) : pick(locale, "Helper: not installed (it comes with the first connected tool).", "小幫手：還沒安裝（連接第一個工具時會裝好）。"));
   say();
-  for (const tool of ALL_HOOK_TOOLS) say(doctorLine(readHookStatus(tool, folder), locale, folder));
+  for (const tool of LISTED_HOOK_TOOLS) say(doctorLine(readHookStatus(tool, folder), locale, folder));
   return 0;
 }
 
@@ -333,10 +333,10 @@ function commandHook(args: string[]): number {
   const { positionals } = parseArgs({ args, allowPositionals: true, options: {} });
   const [action, toolArg, folderArg] = positionals;
   if ((action !== "install" && action !== "uninstall") || !toolArg) {
-    return fail("Usage: aizbrain hook install|uninstall <tool> [folder]\nTools: claude, gemini, antigravity, codex");
+    return fail("Usage: aizbrain hook install|uninstall <tool> [folder]\nTools: claude, antigravity, codex");
   }
   const tool = parseHookTool(toolArg);
-  if (!tool) return fail(`Unknown tool "${toolArg}". Use claude, gemini, antigravity or codex.`);
+  if (!tool) return fail(`Unknown tool "${toolArg}". Use claude, antigravity or codex.`);
   return applyHook(action === "install", tool, path.resolve(folderArg ?? "."));
 }
 
@@ -371,7 +371,7 @@ async function commandMcp(args: string[]): Promise<number> {
 async function commandHookFlag(args: string[]): Promise<number> {
   if (args[0] === "install" || args[0] === "uninstall") {
     const tool = parseHookTool(args[1] ?? "");
-    if (!tool || !args[2]) return fail(`usage: ${HOOK_FLAG} install|uninstall claude|codex|gemini|antigravity <vault folder>`);
+    if (!tool || !args[2]) return fail(`usage: ${HOOK_FLAG} install|uninstall claude|codex|antigravity <vault folder>`);
     return applyHook(args[0] === "install", tool, path.resolve(args[2]));
   }
   emitOutcome(await runHookEvent(args));

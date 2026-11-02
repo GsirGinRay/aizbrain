@@ -1,7 +1,7 @@
 {
   "name": "aizbrain",
-  "version": "0.1.0",
-  "description": "Give Claude Code, Codex, Gemini CLI and Antigravity one shared, local Markdown memory. One command, no app, no account.",
+  "version": "0.1.1",
+  "description": "Give Claude Code, Codex, Antigravity and other AI tools one shared, local Markdown memory. One command, no app, no account.",
   "license": "MIT",
   "type": "module",
   "homepage": "https://aizbrain.com",
@@ -14,7 +14,6 @@
     "ai",
     "claude-code",
     "codex",
-    "gemini-cli",
     "antigravity",
     "mcp",
     "markdown",

@@ -73,7 +73,7 @@ describe("init", () => {
     assert.ok(instructions.includes("Inbox/Inbox.md"));
     assert.ok(readFile(vault, ".ai/INDEX.md").includes("Most important today (P1): Try the handoff"));
     assert.ok(jsonAt(vault, ".claude/settings.json").hooks.Stop[0].hooks[0].command.includes("--aizbrain-hook stop"));
-    assert.equal(jsonAt(vault, ".gemini/settings.json").hooksConfig.enabled, true);
+    assert.ok(!fs.existsSync(path.join(vault, ".gemini")), "Gemini CLI is no longer connected by default");
     assert.ok(jsonAt(vault, ".agents/hooks.json").aizbrain.Stop[0].command.endsWith("--aizbrain-hook stop --format antigravity"));
     assert.ok(out.stdout.includes("Next:"));
     assert.ok(out.stdout.includes("Codex was not touched"));
@@ -210,10 +210,10 @@ describe("init", () => {
 
   it("reports a broken settings file, leaves it alone and connects the rest", () => {
     const { vault, run } = sandbox();
-    writeFile(vault, ".gemini/settings.json", "{ not json");
+    writeFile(vault, ".agents/hooks.json", "{ not json");
     const out = run("init", vault, "--locale", "en");
     assert.equal(out.status, 0, out.stderr);
-    assert.equal(readFile(vault, ".gemini/settings.json"), "{ not json");
+    assert.equal(readFile(vault, ".agents/hooks.json"), "{ not json");
     assert.ok(out.stdout.includes("not valid JSON"));
     assert.ok(fs.existsSync(path.join(vault, ".claude/settings.json")));
   });
@@ -346,7 +346,7 @@ describe("today, index and doctor", () => {
     const out = run("doctor", vault);
     assert.equal(out.status, 0, out.stderr);
     assert.ok(out.stdout.includes("Claude Code and Grok Build: connected."));
-    assert.ok(out.stdout.includes("Gemini CLI: not connected."));
+    assert.ok(!out.stdout.includes("Gemini"));
     assert.ok(out.stdout.includes("Codex: not connected."));
     fs.rmSync(path.join(vault, ".ai/bin/aizbrain-hook.mjs"));
     assert.ok(run("doctor", vault).stdout.includes("is missing"));
