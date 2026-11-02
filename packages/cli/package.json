@@ -1,0 +1,45 @@
+{
+  "name": "aizbrain",
+  "version": "0.1.0",
+  "description": "Give Claude Code, Codex, Gemini CLI and Antigravity one shared, local Markdown memory. One command, no app, no account.",
+  "license": "MIT",
+  "type": "module",
+  "homepage": "https://aizbrain.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GsirGinRay/aizbrain.git",
+    "directory": "packages/cli"
+  },
+  "keywords": [
+    "ai",
+    "claude-code",
+    "codex",
+    "gemini-cli",
+    "antigravity",
+    "mcp",
+    "markdown",
+    "second-brain",
+    "tasks",
+    "handoff"
+  ],
+  "bin": {
+    "aizbrain": "dist/aizbrain.mjs"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepack": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@second-brain/brain-core": "file:../brain-core",
+    "esbuild": "^0.28.2"
+  }
+}

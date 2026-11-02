@@ -142,6 +142,10 @@ test("work logs are read from both languages with their next step", () => {
     { date: "2026-10-25", time: "09:05", tool: "Codex", next: "check the next call" },
   ]);
   assert.deepEqual(parseAiWorklog("### AI 工作紀錄 sometime"), []);
+  // Models sometimes leave out the time; the handoff still has to reach the index.
+  assert.deepEqual(parseAiWorklog("### AI work log 2026-11-02 (Claude Code)\n- Next: review the draft"), [
+    { date: "2026-11-02", time: "", tool: "Claude Code", next: "review the draft" },
+  ]);
   // Some tools write the whole log on the heading line.
   assert.deepEqual(parseAiWorklog("  ### AI 工作紀錄 2026-10-25 23:24（Codex）   - 做了什麼：補上提醒   - 下一步：下次法說會比較"), [
     { date: "2026-10-25", time: "23:24", tool: "Codex", next: "下次法說會比較" },

@@ -384,7 +384,7 @@ export function renderVaultIndex(input: VaultIndexInput): string {
       ? copy.handoffsNone
       : toMarkdownTable(
           copy.handoff,
-          handoffs.map((item) => [`${item.date} ${item.time}`, item.tool, item.taskTitle, item.next, item.sourcePath]),
+          handoffs.map((item) => [`${item.date} ${item.time}`.trim(), item.tool, item.taskTitle, item.next, item.sourcePath]),
         ),
     "",
     copy.handoffsMore,
