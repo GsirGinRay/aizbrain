@@ -1,42 +1,69 @@
-# aizbrain
+<div align="center">
 
-[繁體中文](README.zh-TW.md)
+<img src="apps/desktop/src/assets/app-logo.png" width="96" alt="">
 
-The second brain you share with every AI: a task and project manager for Windows and Mac for people with a lot on their plate. Called Second Brain Workspace before 0.9.0. Everything lives in ordinary Markdown files on your computer, so Obsidian, VS Code or any editor can open them too. No account, and your notes are never uploaded.
+# AIzBrain
 
-## Download and install
+**Models change. Your workflow doesn't.**
 
-### Windows
+The free, local second brain that Claude, Codex, Gemini and the next best model all share.
 
-1. Download `aizbrain_x.y.z_x64-setup.exe` (`Second-Brain-Workspace_x.y.z_x64-setup.exe` up to 0.8.6) from the [latest release](https://github.com/GsirGinRay/second-brain-workspace/releases/latest).
-2. Run the installer.
-3. On first launch, pick a folder for your Markdown (or skip it and pick one before closing).
+[Website](https://aizbrain.com) · [Download](https://github.com/GsirGinRay/aizbrain/releases/latest) · [How the handoff works](docs/ai-handoff.md) · [繁體中文](README.zh-TW.md)
 
-#### "Windows protected your PC"
+[![Latest release](https://img.shields.io/github/v/release/GsirGinRay/aizbrain?label=release)](https://github.com/GsirGinRay/aizbrain/releases/latest)
+[![MIT license](https://img.shields.io/github/license/GsirGinRay/aizbrain)](LICENSE)
+![Windows and macOS](https://img.shields.io/badge/platform-Windows%20%7C%20macOS-blue)
 
-Windows SmartScreen shows this for new software without a paid code-signing certificate. It does not mean the file is harmful; the whole app is open source on this page.
+<img src="apps/website/public/assets/relay-en.gif" width="860" alt="Claude Code leaves a work log; Codex opens the same folder and carries on from it">
 
-1. Click **More info**.
-2. Click **Run anyway**.
+</div>
 
-You only see this on the first install.
+Claude runs out halfway through? Open another AI in the same folder and ask where things stand. Your tasks, context and AI work logs live in ordinary Markdown on your computer, so nothing is trapped in a chat window.
 
-### Mac
+## Try it in 30 seconds
 
-1. Download `aizbrain_x.y.z_universal.dmg` from the same page. It runs on Apple Silicon and Intel Macs with macOS 11 or later.
-2. Open the .dmg and drag **aizbrain** into **Applications**.
-3. Open aizbrain once. macOS says it cannot verify the developer, because the app has no paid Apple signature yet.
-4. Open **System Settings → Privacy & Security**, scroll down and click **Open Anyway** next to aizbrain, then confirm.
+```bash
+npx aizbrain init my-second-brain
+cd my-second-brain
+claude          # or codex, gemini, ...
+```
 
-After an update macOS may ask once whether aizbrain may use its Keychain item (it holds the phone inbox key); choose **Always Allow**.
+Ask "What's the most important task today?", then switch tools and ask "Where did we leave off?". No account, and nothing is uploaded.
 
-Updates on both systems are downloaded by the app and checked against the public key built into it, so only official releases are installed.
+Prefer an app? [Download for Windows or Mac](https://github.com/GsirGinRay/aizbrain/releases/latest) to get the calendar, board, notifications and phone inbox on the same files.
 
-### Updates
+## How the handoff works
 
-The app checks for a new version at launch and every 6 hours and asks before installing. Updates never touch your Markdown folder.
+1. **Rules in one place.** `.ai/INSTRUCTIONS.md` holds the rules. `CLAUDE.md`, `AGENTS.md`, `GEMINI.md` and `QWEN.md` point every tool at it.
+2. **Context at the start.** A session-start hook hands the AI today's most important task and the latest handoffs from `.ai/INDEX.md`.
+3. **A log at the end.** Each AI adds a work log under the task: done, result, next. If it changes files and forgets, the stop hook reminds it once.
 
-## Features
+```markdown
+- [ ] #task Finish the launch post [[Launch]] ⏳ 2026-11-02
+
+  ### AI work log 2026-11-02 21:14 (Claude Code)
+  - Done: drafted the post
+  - Result: Knowledge/Launch post.md
+  - Next: tighten the intro
+```
+
+| Tool | How it connects |
+| --- | --- |
+| Claude Code, Grok Build, Codex, Gemini CLI, Antigravity | Hooks and rule files |
+| OpenCode, Qwen Code and similar | Rule files |
+| Claude Desktop and other MCP clients | `npx aizbrain mcp` |
+
+A web chat can't read files on your computer, so ChatGPT on the web only joins through a client that can. See [docs/ai-handoff.md](docs/ai-handoff.md) for the details.
+
+## The app
+
+<img src="apps/website/public/assets/screens/today-en.webp" alt="Today page with sample data">
+
+| | |
+| --- | --- |
+| <img src="apps/website/public/assets/screens/calendar-en.webp" alt="Calendar with sample data"> | <img src="apps/website/public/assets/screens/board-en.webp" alt="Task board with sample data"> |
+
+*Real screens with made-up data.*
 
 **What to do today**
 - Today page: today's single most important task, a timeline and unscheduled tasks
@@ -58,67 +85,58 @@ The app checks for a new version at launch and every 6 hours and asks before ins
 - Repeating tasks: daily, on weekdays, on a day of the month or a custom interval
 - Checklists inside a task, with progress on the card
 - System notifications before a task starts and a daily summary
-
-**Phone**
-- Phone inbox (free): pair once, then tasks you send from the phone (or its share menu) arrive end-to-end encrypted in your computer's inbox
-- Today's list on the phone (paid Skool members): today and the next 7 days, tick off, reschedule or star tasks
+- Phone inbox: pair once, then send tasks from your phone or its share menu, end-to-end encrypted
 
 **Also**
 - Traditional Chinese and English, light and dark themes
 - Undo and redo (`Ctrl+Z` / `Ctrl+Shift+Z`)
-- An automatic `.ai/INDEX.md` so an AI assistant can find your projects, knowledge and today's tasks
 
 ## Your data is Markdown
 
-Every action writes straight to the folder you chose; there is no separate database. A task looks like this:
+Every action writes straight to the folder you chose; there is no separate database.
 
-```markdown
-- [ ] #task Write the first tutorial [[Open Source Launch]] ⏳ 2026-08-15 ⏰ 09:30 ⏱ 30m
-
-  ## Notes
-
-  Full Markdown content for this task.
-```
-
-- Repeat rules and similar tokens follow Obsidian Tasks, so other tools can read them.
+- Obsidian, VS Code or any editor can open the same files. Repeat rules and similar tokens follow Obsidian Tasks.
 - Every write is preceded by a verified backup and done atomically, so a crash never leaves a half-written file.
 - To read the same files on a phone, keep the folder in OneDrive, Dropbox, Google Drive or Obsidian Sync.
-- Folder names follow the language the vault was created in: `Inbox`, `Projects`, `Knowledge`, `Journal` in English, `收件匣`, `專案`, `知識`, `日誌` in Traditional Chinese. Switching the interface language later does not rename them.
+- Folder names follow the language the vault was created in, and switching the interface language later does not rename them.
 
-## Working with AI
+## What's free
 
-In Settings, choose "Build architecture" and tick "AI handoff". The folder then gets:
+Everything that runs on your computer is free and MIT licensed: the desktop app, the CLI, hooks, the MCP server and the phone inbox.
 
-- `.ai/INSTRUCTIONS.md`: rules for AI, including "write back when you finish": after a piece of work the AI adds an AI work log under the task (done, result, next).
-- `.ai/INDEX.md`: an overview the app keeps up to date, with today's most important task first and the latest AI handoffs.
-- `CLAUDE.md`, `AGENTS.md`, `GEMINI.md`, `QWEN.md`: so Claude Code, Codex, Grok, OpenCode, Gemini CLI, Qwen Code and similar tools find the rules as soon as they open the folder.
-
-To hand the AI today's priorities at the start of a session, and remind it once when it forgets to write back, install the hooks (from the command line for now; `<App>` is where the app is installed):
-
-```
-<App>\second-brain-workspace.exe --aizbrain-hook install claude <your folder>
-<App>\second-brain-workspace.exe --aizbrain-hook install codex  <your folder>
-<App>\second-brain-workspace.exe --aizbrain-hook install gemini <your folder>
-<App>\second-brain-workspace.exe --aizbrain-hook install antigravity <your folder>
-```
-
-- `claude` also covers Grok Build. Grok and Gemini ask you to trust the folder once; Codex asks you to review the hooks once in `/hooks`.
-- Use `uninstall` instead of `install` to remove them; the previous settings file is kept as `.aizbrain-backup`.
-- The hooks only read your folder, never the conversation. See [docs/ai-write-back-plan.md](docs/ai-write-back-plan.md) (Traditional Chinese).
+One feature is paid, because it depends on a hosted service: **today's list on your phone** (view, tick off and reschedule tasks). It comes with membership in the author's community on [Skool](https://www.skool.com), a paid community platform. The code is public like the rest.
 
 ## Privacy
 
 - Your Markdown is never uploaded; all reading and writing happens in the folder you chose.
-- The app goes online only to check for updates and, after you pair a phone, to receive tasks sent from it.
-- Phone tasks are encrypted on the phone and only your computer can open them. The relay at `inbox.aizbrain.com` keeps the unreadable data until your computer picks it up, then deletes it (14 days at most). See [docs/inbox-relay.md](docs/inbox-relay.md).
+- The app goes online only to check for updates and, after you pair a phone, for the phone features.
+- Phone tasks are encrypted on the phone and only your computer can open them. The relay at `inbox.aizbrain.com` keeps the unreadable data until your computer picks it up, then deletes it (14 days at most).
+- If you turn on the paid phone list, your computer also sends an encrypted snapshot of your upcoming tasks, which the relay can't read. See [docs/inbox-relay.md](docs/inbox-relay.md).
+- An AI tool can read what is in the folder when you open it there, and that tool's own terms apply.
 
-## For developers
+## Install notes
 
-Requires Node.js 20+, Rust stable, Microsoft WebView2 and the Tauri 2 Windows build prerequisites (Visual Studio Build Tools with the C++ workload, Windows SDK).
+**Windows.** Download `aizbrain_x.y.z_x64-setup.exe` from the [latest release](https://github.com/GsirGinRay/aizbrain/releases/latest) and run it. SmartScreen warns about new software without a paid signing certificate: click **More info**, then **Run anyway**. You only see this on the first install.
+
+**Mac.** Download `aizbrain_x.y.z_universal.dmg` (macOS 11 or later) and drag it into Applications. Open it once, then go to **System Settings → Privacy & Security** and click **Open Anyway**. After an update macOS may ask about its Keychain item; choose **Always Allow**.
+
+**Updates.** The app checks at launch and every 6 hours, asks before installing, and verifies each update against the public key built into it. Updates never touch your Markdown folder.
+
+**Hooks without the CLI.** The desktop app can install hooks too, once "AI handoff" is built from Settings:
+
+```
+<App>\second-brain-workspace.exe --aizbrain-hook install claude <your folder>
+```
+
+Replace `claude` with `codex`, `gemini` or `antigravity`, and `install` with `uninstall` to remove them.
+
+## Contributing
+
+Issues and pull requests are welcome, in English or Chinese. See [CONTRIBUTING.md](CONTRIBUTING.md), the [good first issues](https://github.com/GsirGinRay/aizbrain/labels/good%20first%20issue) and the [changelog](CHANGELOG.md).
 
 ```bash
-git clone https://github.com/GsirGinRay/second-brain-workspace.git
-cd second-brain-workspace
+git clone https://github.com/GsirGinRay/aizbrain.git
+cd aizbrain
 npm install
 npm run desktop:dev   # development mode
 npm test              # TypeScript unit, integration and DOM tests
@@ -126,16 +144,20 @@ npm run rust:test     # Rust tests
 npm run build         # type check and web build
 ```
 
+The desktop app needs Node.js 20+, Rust stable and the Tauri 2 prerequisites (on Windows: WebView2 and Visual Studio Build Tools with the C++ workload).
+
 | Folder | Contents |
 | --- | --- |
 | `apps/desktop` | Desktop app: Tauri 2 (Rust) with React and TypeScript |
 | `apps/mobile-capture` | Phone web app (PWA) |
+| `apps/website` | aizbrain.com |
 | `packages/brain-core` | Markdown parsing, task rules, encryption format |
 | `packages/brain-ui` | Calendar, search and other shared logic |
+| `packages/cli` | The `aizbrain` command: init, hooks and MCP server |
 | `services/inbox-relay` | Phone inbox relay server (Rust) |
 | `examples/sample-vault` | Sample data (all made up) |
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) to contribute and [docs/architecture.md](docs/architecture.md) for the architecture.
+See [docs/architecture.md](docs/architecture.md) for the architecture.
 
 ## License
 

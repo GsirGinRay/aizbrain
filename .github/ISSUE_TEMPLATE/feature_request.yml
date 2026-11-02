@@ -1,0 +1,15 @@
+name: Feature request / 功能建議
+description: Suggest an idea. 中文或英文都可以。
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do? / 你想做到什麼？
+      description: Describe the situation first, then the idea. 先說情境，再說想法。
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea / 你的想法

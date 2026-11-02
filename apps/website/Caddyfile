@@ -1,0 +1,23 @@
+{
+	auto_https off
+	admin off
+}
+
+:8115 {
+	@health path /healthz
+	respond @health "ok" 200
+
+	root * /srv
+	encode zstd gzip
+	file_server
+	header {
+		Content-Security-Policy "default-src 'self'; connect-src https://api.github.com; img-src 'self'; media-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		Strict-Transport-Security "max-age=31536000"
+		-Server
+	}
+	@assets path /assets/*
+	header @assets Cache-Control "public, max-age=3600"
+}

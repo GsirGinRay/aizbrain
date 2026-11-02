@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第二大腦 AIzBrain：每一家 AI 共用的第二大腦</title>
+<meta name="description" content="免費、開源、存在自己電腦。任務、來龍去脈和 AI 交接都是 Markdown 檔，Claude 額度用完，換 Codex 或 Gemini 打開同一個資料夾就接得上。">
+<meta name="theme-color" content="#060a13">
+<link rel="canonical" href="https://aizbrain.com/zh-TW/">
+<link rel="alternate" hreflang="en" href="https://aizbrain.com/">
+<link rel="alternate" hreflang="zh-TW" href="https://aizbrain.com/zh-TW/">
+<link rel="icon" href="/assets/logo-64.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aizbrain.com/zh-TW/">
+<meta property="og:title" content="第二大腦 AIzBrain：每一家 AI 共用的第二大腦">
+<meta property="og:description" content="免費、開源、存在自己電腦。任務、來龍去脈和 AI 交接都是 Markdown 檔，Claude 額度用完，換 Codex 或 Gemini 打開同一個資料夾就接得上。">
+<meta property="og:image" content="https://aizbrain.com/assets/og-zh-TW.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body data-lang="zh-TW">
+<a class="skip" href="#main">跳到主要內容</a>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/zh-TW/"><img src="/assets/logo-64.png" alt="" width="32" height="32"><span><b>AI</b>zBrain</span></a>
+    <nav class="nav-links" aria-label="主選單">
+      <a href="#how">怎麼運作</a>
+      <a href="#product">App 畫面</a>
+      <a href="#trust">你的資料</a>
+      <a href="#pricing">費用</a>
+    </nav>
+    <div class="nav-end">
+      <a class="lang" href="/" hreflang="en" lang="en">English</a>
+      <a class="btn btn-line btn-sm" href="https://github.com/GsirGinRay/aizbrain"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>GitHub</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-head">
+      <div class="eyebrow"><span>免費開源</span><span>Windows 與 Mac</span><span>不用註冊</span></div>
+      <h1>AI 模型可以換，<br><em>工作流程不能換。</em></h1>
+      <p class="lead">Claude 額度用完，不用再從頭交代一遍。任務、來龍去脈和 AI 交接都存在你自己電腦的 Markdown 檔裡，換哪一家 AI，打開同一個資料夾就接得上。</p>
+      <div class="cta">
+        <a class="btn btn-gold" data-download href="https://github.com/GsirGinRay/aizbrain/releases/latest">免費下載</a>
+        <div class="copy"><span><i>$</i> npx aizbrain init</span><button type="button" data-copy="npx aizbrain init" data-done="已複製">複製</button></div>
+      </div>
+      <p class="cta-note" data-version-note>支援 Windows 與 macOS · MIT 授權</p>
+    </div>
+
+    <div class="demo" id="demo" aria-label="重播 Claude Code 透過 Markdown 檔把任務交接給 Codex 的過程">
+      <div class="demo-bar" data-relay></div>
+      <div class="demo-grid">
+        <div class="term" aria-hidden="true"><div class="pane-title"><b data-term-title></b><span>~/my-second-brain</span></div><div data-term></div></div>
+        <div class="file" aria-hidden="true"><div class="pane-title"><b>收件匣/待辦.md</b><span>純 Markdown，就在你的電腦</span></div><div data-file></div></div>
+      </div>
+      <div class="demo-cap">節錄自一次真實的 Claude Code → Codex 接力。Codex 只收到那句問話，其他都是從資料夾讀到的。</div>
+    </div>
+    <noscript><p class="cta-note">節錄自一次真實的 Claude Code → Codex 接力。Codex 只收到那句問話，其他都是從資料夾讀到的。</p></noscript>
+  </div>
+</div>
+
+<section id="problem">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="kicker">問題在哪</div><h2>你交代的事，全都只留在聊天視窗裡。</h2><p class="sub">AI 沒有變笨，只是換一家之後，它看不到你跟上一家講過什麼。</p></div>
+    <div class="versus reveal">
+      <div class="vs"><h3>現在</h3><ul><li>額度一用完，換一家又要從頭講一遍</li><li>規則和提示詞散落在各個聊天紀錄</li><li>AI 做了什麼、下一步是什麼，沒有留下紀錄</li></ul></div>
+      <div class="vs good"><h3>用第二大腦</h3><ul><li>任何 AI 打開資料夾，就知道今天最重要的事</li><li>規則寫在一份檔案，每家工具都讀同一份</li><li>每家 AI 都留工作紀錄：做了什麼、結果在哪、下一步</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="kicker">怎麼運作</div><h2>交接靠的只是幾份純文字檔。</h2></div>
+    <div class="steps reveal">
+      <article class="step"><div class="num">01</div><h3>建好資料夾</h3><p>在 App 裡按幾下，或打一行指令。入口檔會把每家 AI 帶到同一份規則。</p><pre class="snippet"><span class="d">$</span> npx aizbrain init
+<span class="g">+</span> .ai/INSTRUCTIONS.md
+<span class="g">+</span> .ai/INDEX.md
+<span class="g">+</span> CLAUDE.md  AGENTS.md
+<span class="g">+</span> GEMINI.md  QWEN.md</pre></article>
+      <article class="step"><div class="num">02</div><h3>AI 一開始就有脈絡</h3><p>對話一開始，hook 會把今天最重要的任務和最近的交接交給 AI。</p><pre class="snippet"><span class="d"># .ai/INDEX.md</span>
+<span class="y">今日最重要（P1）：</span>
+跑營收觀察名單
+
+<span class="d">最近 AI 交接</span>
+Claude Code → 下一步：做成表格</pre></article>
+      <article class="step"><div class="num">03</div><h3>AI 做完會寫回</h3><p>AI 改了檔案卻忘了留紀錄，hook 會提醒它一次。下一家 AI 就從這裡接手。</p><pre class="snippet"><span class="b">### AI 工作紀錄（Claude Code）</span>
+- 做了什麼：完成第一輪篩選
+- 結果在哪：知識/觀察名單.md
+- <span class="y">下一步：做成表格</span></pre></article>
+    </div>
+  </div>
+</section>
+
+<section id="tools" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>你已經訂閱的 AI 工具，接得上。</h2><p class="sub">支援 hook 的工具會自動帶入脈絡；有規則檔的工具，打開資料夾就會讀到同一份說明。</p></div>
+    <div class="tools reveal">
+      <div class="tool"><b>Claude Code</b><span class="pill hook">hook＋規則檔</span></div>
+      <div class="tool"><b>Codex</b><span class="pill hook">hook＋規則檔</span></div>
+      <div class="tool"><b>Gemini CLI</b><span class="pill hook">hook＋規則檔</span></div>
+      <div class="tool"><b>Antigravity</b><span class="pill hook">hook＋規則檔</span></div>
+      <div class="tool"><b>Grok Build</b><span class="pill hook">hook＋規則檔</span></div>
+      <div class="tool"><b>OpenCode</b><span class="pill rule">規則檔</span></div>
+      <div class="tool"><b>Qwen Code</b><span class="pill rule">規則檔</span></div>
+      <div class="tool"><b>支援 MCP 的工具</b><span class="pill hook">MCP</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="product" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="kicker">App 畫面</div><h2>資料夾之外，還有一個每天會打開的 App。</h2><p class="sub">我自己每天都在用。下面都是 App 的真實畫面，資料是虛構的示範內容。</p></div>
+    <div class="reveal">
+      <div class="tabs" role="tablist" aria-label="App 畫面">
+        <button class="tab" role="tab" aria-selected="true" data-shot="today" data-cap="一天只有一件最重要的事，再加上時間軸；排太滿的時候會提醒你。">今日</button>
+        <button class="tab" role="tab" aria-selected="false" data-shot="calendar" data-cap="月曆和週曆都能拖曳改期，也可以框選好幾件一起移動。">日曆</button>
+        <button class="tab" role="tab" aria-selected="false" data-shot="board" data-cap="從想法匣到完成，也能切換成表格或清單。">看板</button>
+        <button class="tab" role="tab" aria-selected="false" data-shot="projects" data-cap="專案可以用表格、卡片或狀態來看，任務、筆記和附件都在一起。">專案</button>
+      </div>
+      <div class="shot"><img data-shot-img src="/assets/screens/today-zh-TW.webp" width="1360" height="850" alt="第二大腦桌面 App 畫面，使用虛構示範資料"></div>
+      <p class="shot-cap" data-shot-cap>一天只有一件最重要的事，再加上時間軸；排太滿的時候會提醒你。</p>
+    </div>
+    <div class="mini reveal">
+      <div><h3>一句話新增</h3><p>打「明天下午三點繳電話費」，日期和時間自動辨識。</p></div>
+      <div><h3>專注模式</h3><p>一次只看一件事，還有計時器。</p></div>
+      <div><h3>收工</h3><p>一鍵把沒做完的移到明天，再看看今天完成了什麼。</p></div>
+      <div><h3>等待清單</h3><p>交辦出去的事，時間一到就提醒你追。</p></div>
+      <div><h3>手機收件匣</h3><p>人在外面也能送任務，端對端加密進電腦收件匣。</p></div>
+      <div><h3>每週回顧</h3><p>完成幾件、哪個專案進展最多，最多往回看 12 週。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="trust" style="padding-top:0">
+  <div class="wrap trust">
+    <div class="reveal">
+      <div class="kicker">你的資料</div>
+      <h2 style="margin-bottom:26px">全部都是 Markdown，什麼軟體都打得開。</h2>
+      <pre class="md-card"><span class="dim">- [ ] #task</span> 跑營收觀察名單
+      <span class="tok">[[台股選股]]</span> <span class="dt">⏳ 2026-11-10 ⏰ 21:00</span>
+
+  ## 筆記
+  這個任務的完整 Markdown 內容。
+
+  <span class="tok">### AI 工作紀錄（Codex）</span>
+  - 下一步：做成報告</pre>
+    </div>
+    <ul class="checks reveal">
+      <li><b>沒有資料庫，也不綁定</b><span>Obsidian、VS Code、記事本都打得開。哪天不用這個 App，筆記也都還在。</span></li>
+      <li><b>每次寫入前都先備份</b><span>先驗證備份，再一次寫入完成。就算當機，也不會留下寫一半的檔案。</span></li>
+      <li><b>筆記不會上傳</b><span>不用註冊。App 只有檢查更新，以及配對手機後收手機送來的任務時才會連線。</span></li>
+      <li><b>程式碼都在 GitHub</b><span>MIT 授權。可以看程式碼、自己編譯，也可以自架手機中繼服務。</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="founder" style="padding-top:0">
+  <div class="wrap"><blockquote class="quote reveal" style="margin:0"><p>「Claude、ChatGPT、Gemini、Grok 我全都有訂閱。每一家都當過最好用的，你永遠不知道下一個最強的模型會是哪一家。」</p><p>「每換一次就要重講一遍，真的太累了。所以我乾脆自己做一個：AI 模型可以換，但工作流程留在自己的電腦裡。」</p><footer>G股團長，第二大腦開發者</footer></blockquote></div>
+</section>
+
+<section id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="kicker">費用</div><h2>幾乎全部免費，例外只有一項。</h2><p class="sub">在你電腦上跑的都免費。唯一收費的功能要靠伺服器運作，所以才收費。</p></div>
+    <table class="price reveal">
+      <thead><tr><th scope="col">功能</th><th scope="col">費用</th></tr></thead>
+      <tbody>
+        <tr><td>桌面 App：任務、日曆、看板、專案、知識</td><td class="free">免費</td></tr>
+        <tr><td>AI 交接、命令列工具、hook 與 MCP 伺服器</td><td class="free">免費</td></tr>
+        <tr><td>手機收件匣：把任務加密送進電腦</td><td class="free">免費</td></tr>
+        <tr><td>手機今天清單：在手機上看今天的任務、打勾</td><td class="paid">付費會員</td></tr>
+      </tbody>
+    </table>
+    <p class="note reveal">手機今天清單是「AI投資學院+」付費會員的權益。開啟後會傳送加密過的近期任務快照，中繼伺服器讀不到內容。程式碼一樣全部公開。</p>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>常見問題</h2></div>
+    <div class="faq reveal">
+      <details><summary>Windows 跳出「已保護您的電腦」，安全嗎？</summary><p>新軟體沒有付費的程式碼簽章憑證，Windows 就會這樣提醒。按<b>其他資訊</b>，再按<b>仍要執行</b>就好，只有第一次安裝會看到。Mac 請到<b>系統設定 → 隱私權與安全性 → 強制打開</b>。更新會用 App 內建的公開金鑰驗證，全部程式碼也都放在 GitHub 上。</p></details>
+      <details><summary>一定要裝桌面 App 才能交接嗎？</summary><p>不用。會用命令列的話，有 Node.js 就能打 <code>npx aizbrain init</code>。App 是在同一批檔案上，多了日曆、看板、通知和手機收件匣。</p></details>
+      <details><summary>網頁版 ChatGPT 讀得到我的資料夾嗎？</summary><p>讀不到，網頁聊天看不到你電腦裡的檔案。請用讀得到檔案的工具，像是 Codex、Claude Code、Gemini CLI，或透過 MCP 伺服器連接。</p></details>
+      <details><summary>它會讀我跟 AI 的對話嗎？</summary><p>不會。hook 只讀你的資料夾，不讀對話。不過 AI 工具讀到的內容，仍然適用各家 AI 自己的隱私條款。</p></details>
+      <details><summary>可以跟 Obsidian 一起用嗎？</summary><p>可以。重複規則等標記沿用 Obsidian Tasks 的格式，同一個資料夾可以兩邊一起開。</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="download">
+  <div class="wrap">
+    <h2 class="reveal">不用再重講一遍了。</h2>
+    <p class="sub reveal">免費、不用註冊，檔案永遠是你的。</p>
+    <div class="cta reveal">
+      <a class="btn btn-gold" data-dl="win" href="https://github.com/GsirGinRay/aizbrain/releases/latest">下載 Windows 版</a>
+      <a class="btn btn-line" data-dl="mac" href="https://github.com/GsirGinRay/aizbrain/releases/latest">下載 Mac 版</a>
+    </div>
+    <p class="cta-note reveal">習慣用命令列？<code style="font-family:var(--mono);color:var(--text)">npx aizbrain init</code></p>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <a class="brand" href="/zh-TW/" style="color:var(--text)"><img src="/assets/logo-64.png" alt="" width="24" height="24" style="width:24px;height:24px"><span><b>AI</b>zBrain</span></a>
+    <a href="https://github.com/GsirGinRay/aizbrain">GitHub</a>
+    <a href="https://github.com/GsirGinRay/aizbrain/releases">所有版本</a>
+    <a href="https://github.com/GsirGinRay/aizbrain/issues">回報問題</a>
+    <a href="https://github.com/GsirGinRay/aizbrain/blob/main/SECURITY.md">資安回報</a>
+    <a href="https://link.brain168.com/ai-invest">免費社群</a>
+    <span class="end">MIT 授權 · 本站不使用 Cookie 或分析工具。</span>
+  </div>
+</footer>
+<script type="application/json" id="aiz-config">{"lang": "zh-TW", "repoSlug": "GsirGinRay/aizbrain", "dlWin": "下載 Windows 版", "dlMac": "下載 Mac 版", "versionNote": "最新版 {version} · 支援 Windows 與 macOS · MIT 授權", "replay": "重播", "demo": {"file": [["h", "# 待辦"], ["", ""], ["task", "- [ ] #task 跑營收觀察名單 🔺 ⏳ 2026-11-02"], ["", ""]], "steps": [{"tool": "Claude Code", "title": "Claude Code", "lines": [{"k": "you", "t": "今天最重要的任務是什麼？只做第一步。"}, {"k": "ai", "t": "今天最重要的任務是「跑營收觀察名單」（P1）。", "w": 1100}, {"k": "tool", "t": "● 寫入 知識/營收觀察名單（虛構公司草稿）.md", "w": 900}, {"k": "file", "t": [["b", "  ### AI 工作紀錄（Claude Code）"], ["", "  - 做了什麼：存好三行觀察草稿"], ["", "  - 結果在哪：知識/營收觀察名單.md"], ["muted", "  - 下一步：確認草稿格式"]], "w": 1300}, {"k": "ai", "t": "草稿存好了，也在任務下寫了工作紀錄，到此停止。", "gap": true, "w": 1500}, {"k": "sys", "t": "關掉 Claude Code，在同一個資料夾打開 Codex……", "gap": true, "w": 1500}]}, {"tool": "Codex", "title": "Codex", "hold": 2200, "lines": [{"k": "you", "t": "做到哪了？"}, {"k": "ai", "t": "目前已完成三點營收觀察草稿，我接著做下一步。", "w": 1400}, {"k": "tool", "t": "● 修改 知識/營收觀察名單（虛構公司草稿）.md", "w": 900}, {"k": "file", "t": [["", ""], ["b", "  ### AI 工作紀錄（Codex）"], ["", "  - 做了什麼：補上待確認欄位"], ["", "  - 結果在哪：同一份草稿"], ["muted", "  - 下一步：取得代號與觀察期間"]], "w": 1300}, {"k": "ai", "t": "我已補上下一步所需的欄位，並寫回工作紀錄，現在停下來。", "gap": true, "w": 2000}]}]}}</script>
+<script src="/assets/app.js" defer></script>
+</body>
+</html>

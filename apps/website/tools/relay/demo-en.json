@@ -1,0 +1,45 @@
+{
+ "file": [
+  ["h", "# Inbox"],
+  ["", ""],
+  ["task", "- [ ] #task Finish the launch post 🔺 ⏳ 2026-11-02"],
+  ["", ""]
+ ],
+ "steps": [
+  {
+   "tool": "Claude Code",
+   "title": "Claude Code",
+   "lines": [
+    {"k": "you", "t": "What's the most important task today? Do the first part only."},
+    {"k": "ai", "t": "The most important task today is \"Finish the launch post\" (P1).", "w": 1100},
+    {"k": "tool", "t": "● Write Knowledge/Launch post draft.md", "w": 900},
+    {"k": "file", "t": [
+     ["b", "  ### AI work log (Claude Code)"],
+     ["", "  - Done: drafted the three-sentence post"],
+     ["", "  - Result: Knowledge/Launch post draft.md"],
+     ["muted", "  - Next: review the draft"]
+    ], "w": 1300},
+    {"k": "ai", "t": "Saved the draft, logged the work under the task, and stopped there.", "gap": true, "w": 1500},
+    {"k": "sys", "t": "Claude Code closed. Opening Codex in the same folder…", "gap": true, "w": 1500}
+   ]
+  },
+  {
+   "tool": "Codex",
+   "title": "Codex",
+   "hold": 2200,
+   "lines": [
+    {"k": "you", "t": "Where did we leave off?"},
+    {"k": "ai", "t": "We left off with a three-sentence launch post awaiting review.", "w": 1400},
+    {"k": "tool", "t": "● Edit Knowledge/Launch post draft.md", "w": 900},
+    {"k": "file", "t": [
+     ["", ""],
+     ["b", "  ### AI work log (Codex)"],
+     ["", "  - Done: reviewed the draft, saved v2"],
+     ["", "  - Result: removed unverified claims"],
+     ["muted", "  - Next: confirm the launch URL"]
+    ], "w": 1300},
+    {"k": "ai", "t": "I reviewed and revised the draft, removed unsupported claims, and logged the handoff.", "gap": true, "w": 2000}
+   ]
+  }
+ ]
+}

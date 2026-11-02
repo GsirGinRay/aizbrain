@@ -23,3 +23,7 @@ apps/desktop/private/
 
 # Inbox relay local data
 services/inbox-relay/data/
+
+# Website raw screenshots and renders (regenerate with apps/website/tools)
+apps/website/assets/
+__pycache__/

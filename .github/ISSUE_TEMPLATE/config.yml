@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security issue / 資安問題
+    url: https://github.com/GsirGinRay/aizbrain/security/advisories/new
+    about: Please report vulnerabilities privately. 請私下回報資安漏洞。

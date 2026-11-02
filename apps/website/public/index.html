@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIzBrain: the second brain every AI shares</title>
+<meta name="description" content="Free, open-source and local. Tasks, context and AI handoffs live in Markdown on your computer, so Claude, Codex and Gemini pick up where the last one stopped.">
+<meta name="theme-color" content="#060a13">
+<link rel="canonical" href="https://aizbrain.com/">
+<link rel="alternate" hreflang="en" href="https://aizbrain.com/">
+<link rel="alternate" hreflang="zh-TW" href="https://aizbrain.com/zh-TW/">
+<link rel="icon" href="/assets/logo-64.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aizbrain.com/">
+<meta property="og:title" content="AIzBrain: the second brain every AI shares">
+<meta property="og:description" content="Free, open-source and local. Tasks, context and AI handoffs live in Markdown on your computer, so Claude, Codex and Gemini pick up where the last one stopped.">
+<meta property="og:image" content="https://aizbrain.com/assets/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body data-lang="en">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/"><img src="/assets/logo-64.png" alt="" width="32" height="32"><span><b>AI</b>zBrain</span></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#product">The app</a>
+      <a href="#trust">Your data</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <div class="nav-end">
+      <a class="lang" href="/zh-TW/" hreflang="zh-TW" lang="zh-TW">繁體中文</a>
+      <a class="btn btn-line btn-sm" href="https://github.com/GsirGinRay/aizbrain"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>GitHub</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-head">
+      <div class="eyebrow"><span>Free and open source</span><span>Windows and Mac</span><span>No account</span></div>
+      <h1>Models change.<br><em>Your workflow doesn’t.</em></h1>
+      <p class="lead">Claude hits its limit halfway through? Open Codex in the same folder and ask where things stand. Your tasks, context and AI handoffs live in plain Markdown on your computer, so the next model picks up where the last one stopped.</p>
+      <div class="cta">
+        <a class="btn btn-gold" data-download href="https://github.com/GsirGinRay/aizbrain/releases/latest">Download</a>
+        <div class="copy"><span><i>$</i> npx aizbrain init</span><button type="button" data-copy="npx aizbrain init" data-done="Copied">Copy</button></div>
+      </div>
+      <p class="cta-note" data-version-note>Windows and macOS · MIT license</p>
+    </div>
+
+    <div class="demo" id="demo" aria-label="A replay of Claude Code handing a task to Codex through a Markdown file">
+      <div class="demo-bar" data-relay></div>
+      <div class="demo-grid">
+        <div class="term" aria-hidden="true"><div class="pane-title"><b data-term-title></b><span>~/my-second-brain</span></div><div data-term></div></div>
+        <div class="file" aria-hidden="true"><div class="pane-title"><b>Inbox/Inbox.md</b><span>plain Markdown, on your disk</span></div><div data-file></div></div>
+      </div>
+      <div class="demo-cap">Condensed from a real Claude Code → Codex run. Codex was told nothing except the question: everything else came from the folder.</div>
+    </div>
+    <noscript><p class="cta-note">Condensed from a real Claude Code → Codex run. Codex was told nothing except the question: everything else came from the folder.</p></noscript>
+  </div>
+</div>
+
+<section id="problem">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="kicker">THE PROBLEM</div><h2>Your context is trapped in one chat window.</h2><p class="sub">AI didn’t get worse when you switched. It just can’t see what you told the last one.</p></div>
+    <div class="versus reveal">
+      <div class="vs"><h3>Today</h3><ul><li>Limit reached, so you re-explain everything to another AI</li><li>Rules and prompts scattered across chat histories</li><li>No record of what the AI did or what comes next</li></ul></div>
+      <div class="vs good"><h3>With AIzBrain</h3><ul><li>Any AI opens the folder and already knows today’s priority</li><li>Rules live in one file, read by every tool</li><li>Each AI leaves a work log: done, result, next</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="kicker">HOW IT WORKS</div><h2>Three plain files do the handoff.</h2></div>
+    <div class="steps reveal">
+      <article class="step"><div class="num">01</div><h3>Set up a folder</h3><p>One command, or a few clicks in the app. Entry files point every AI tool at the same rules.</p><pre class="snippet"><span class="d">$</span> npx aizbrain init
+<span class="g">+</span> .ai/INSTRUCTIONS.md
+<span class="g">+</span> .ai/INDEX.md
+<span class="g">+</span> CLAUDE.md  AGENTS.md
+<span class="g">+</span> GEMINI.md  QWEN.md</pre></article>
+      <article class="step"><div class="num">02</div><h3>AI starts with context</h3><p>At session start, a hook hands the AI today’s most important task and the recent handoffs.</p><pre class="snippet"><span class="d"># .ai/INDEX.md</span>
+<span class="y">Most important today (P1):</span>
+Finish the launch post
+
+<span class="d">Recent AI handoffs</span>
+Claude Code → next: tighten intro</pre></article>
+      <article class="step"><div class="num">03</div><h3>AI writes back</h3><p>When an AI edits your folder but forgets the log, the hook reminds it once. The next AI reads it.</p><pre class="snippet"><span class="b">### AI work log (Claude Code)</span>
+- Done: drafted the launch post
+- Result: Knowledge/Launch post.md
+- <span class="y">Next: tighten the intro</span></pre></article>
+    </div>
+  </div>
+</section>
+
+<section id="tools" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>Works with the tools you already pay for.</h2><p class="sub">Hook-based tools get context automatically. Tools with rule files read the same instructions when they open the folder.</p></div>
+    <div class="tools reveal">
+      <div class="tool"><b>Claude Code</b><span class="pill hook">hooks + rules</span></div>
+      <div class="tool"><b>Codex</b><span class="pill hook">hooks + rules</span></div>
+      <div class="tool"><b>Gemini CLI</b><span class="pill hook">hooks + rules</span></div>
+      <div class="tool"><b>Antigravity</b><span class="pill hook">hooks + rules</span></div>
+      <div class="tool"><b>Grok Build</b><span class="pill hook">hooks + rules</span></div>
+      <div class="tool"><b>OpenCode</b><span class="pill rule">rule file</span></div>
+      <div class="tool"><b>Qwen Code</b><span class="pill rule">rule file</span></div>
+      <div class="tool"><b>Any MCP client</b><span class="pill hook">MCP</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="product" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="kicker">THE APP</div><h2>A real task manager, not just a folder.</h2><p class="sub">For people with a lot on their plate. These are real screens from the app, with made-up data.</p></div>
+    <div class="reveal">
+      <div class="tabs" role="tablist" aria-label="THE APP">
+        <button class="tab" role="tab" aria-selected="true" data-shot="today" data-cap="One most important task, a timeline, and a warning when today holds more hours than you have.">Today</button>
+        <button class="tab" role="tab" aria-selected="false" data-shot="calendar" data-cap="Month and week views. Drag to reschedule, or box-select several tasks and move them together.">Calendar</button>
+        <button class="tab" role="tab" aria-selected="false" data-shot="board" data-cap="Idea inbox to done, also as a table or a list.">Board</button>
+        <button class="tab" role="tab" aria-selected="false" data-shot="projects" data-cap="Projects as a table, cards or by status, with their tasks, notes and attachments.">Projects</button>
+      </div>
+      <div class="shot"><img data-shot-img src="/assets/screens/today-en.webp" width="1360" height="850" alt="AIzBrain desktop app screenshot with sample data"></div>
+      <p class="shot-cap" data-shot-cap>One most important task, a timeline, and a warning when today holds more hours than you have.</p>
+    </div>
+    <div class="mini reveal">
+      <div><h3>Quick add</h3><p>Type “Pay the phone bill tomorrow at 3pm”. The date and time are recognized.</p></div>
+      <div><h3>Focus mode</h3><p>One task at a time, with a timer.</p></div>
+      <div><h3>Wrap-up</h3><p>Move what’s left to tomorrow in one click and see what you finished.</p></div>
+      <div><h3>Waiting list</h3><p>Follow up on work you handed off, on the day it’s due.</p></div>
+      <div><h3>Phone inbox</h3><p>Send a task from your phone. It reaches your computer end-to-end encrypted.</p></div>
+      <div><h3>Weekly review</h3><p>Tasks finished and the projects that moved most, up to 12 weeks back.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="trust" style="padding-top:0">
+  <div class="wrap trust">
+    <div class="reveal">
+      <div class="kicker">YOUR DATA</div>
+      <h2 style="margin-bottom:26px">It’s just Markdown. Open it with anything.</h2>
+      <pre class="md-card"><span class="dim">- [ ] #task</span> Write the first tutorial
+      <span class="tok">[[Open Source Launch]]</span> <span class="dt">⏳ 2026-08-15 ⏰ 09:30</span>
+
+  ## Notes
+  Full Markdown content for this task.
+
+  <span class="tok">### AI work log (Codex)</span>
+  - Next: read it through once more</pre>
+    </div>
+    <ul class="checks reveal">
+      <li><b>No database, no lock-in</b><span>Obsidian, VS Code or Notepad open the same files. Stop using the app and your notes stay.</span></li>
+      <li><b>Backed up before every write</b><span>A verified backup, then an atomic write. A crash never leaves a half-written file.</span></li>
+      <li><b>Your notes are never uploaded</b><span>No account. The app goes online only to check for updates and, after you pair a phone, to receive what you send.</span></li>
+      <li><b>All of it is open</b><span>MIT licensed. Read the code, build it yourself, or run your own phone relay.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="founder" style="padding-top:0">
+  <div class="wrap"><blockquote class="quote reveal" style="margin:0"><p>“I pay for Claude, ChatGPT, Gemini and Grok. Each has been the best at some point, and you never know which will be next.”</p><p>“Switching meant explaining everything again. So I built this for myself: the models can change, but my workflow stays on my computer.”</p><footer>The maker of AIzBrain</footer></blockquote></div>
+</section>
+
+<section id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="kicker">PRICING</div><h2>Free, with one exception that’s easy to explain.</h2><p class="sub">Anything that runs on your computer is free. The one paid feature is hosted, which is why it costs money.</p></div>
+    <table class="price reveal">
+      <thead><tr><th scope="col">Feature</th><th scope="col">Price</th></tr></thead>
+      <tbody>
+        <tr><td>Desktop app: tasks, calendar, board, projects, knowledge</td><td class="free">Free</td></tr>
+        <tr><td>AI handoff, CLI, hooks and MCP server</td><td class="free">Free</td></tr>
+        <tr><td>Phone inbox: send tasks to your computer, encrypted</td><td class="free">Free</td></tr>
+        <tr><td>Phone today’s list: see and tick off tasks on your phone</td><td class="paid">Paid members</td></tr>
+      </tbody>
+    </table>
+    <p class="note reveal">The paid list is included in the author’s Skool community membership. It sends an encrypted snapshot of your upcoming tasks that the relay can’t read. The source is public like everything else.</p>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>Questions</h2></div>
+    <div class="faq reveal">
+      <details><summary>Windows says “protected your PC”. Is it safe?</summary><p>Windows shows this for new apps without a paid code-signing certificate. Click <b>More info</b>, then <b>Run anyway</b>; you only see it on first install. On a Mac, use <b>System Settings → Privacy &amp; Security → Open Anyway</b>. Updates are checked against a public key built into the app, and all the source code is on GitHub.</p></details>
+      <details><summary>Do I need the desktop app for the AI handoff?</summary><p>No. <code>npx aizbrain init</code> sets up a folder with Node.js alone. The app adds the calendar, board, notifications and phone inbox on the same files.</p></details>
+      <details><summary>Can ChatGPT on the web read my folder?</summary><p>No, a web chat can’t see files on your computer. Use a tool that can, such as Codex, Claude Code or Gemini CLI, or connect a client through the MCP server.</p></details>
+      <details><summary>Does it read my AI conversations?</summary><p>No. Hooks read only your folder, never the conversation. Your AI provider’s own privacy terms still apply to whatever that tool reads.</p></details>
+      <details><summary>Can I use it with Obsidian?</summary><p>Yes. Repeat rules and similar tokens follow Obsidian Tasks, and the same folder can be open in both.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="download">
+  <div class="wrap">
+    <h2 class="reveal">Stop re-explaining. Start handing off.</h2>
+    <p class="sub reveal">Free, no account, and your files stay yours.</p>
+    <div class="cta reveal">
+      <a class="btn btn-gold" data-dl="win" href="https://github.com/GsirGinRay/aizbrain/releases/latest">Download for Windows</a>
+      <a class="btn btn-line" data-dl="mac" href="https://github.com/GsirGinRay/aizbrain/releases/latest">Download for Mac</a>
+    </div>
+    <p class="cta-note reveal">Prefer the terminal? <code style="font-family:var(--mono);color:var(--text)">npx aizbrain init</code></p>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <a class="brand" href="/" style="color:var(--text)"><img src="/assets/logo-64.png" alt="" width="24" height="24" style="width:24px;height:24px"><span><b>AI</b>zBrain</span></a>
+    <a href="https://github.com/GsirGinRay/aizbrain">GitHub</a>
+    <a href="https://github.com/GsirGinRay/aizbrain/releases">Releases</a>
+    <a href="https://github.com/GsirGinRay/aizbrain/issues">Report an issue</a>
+    <a href="https://github.com/GsirGinRay/aizbrain/blob/main/SECURITY.md">Security</a>
+    
+    <span class="end">MIT license · This site uses no cookies or analytics.</span>
+  </div>
+</footer>
+<script type="application/json" id="aiz-config">{"lang": "en", "repoSlug": "GsirGinRay/aizbrain", "dlWin": "Download for Windows", "dlMac": "Download for Mac", "versionNote": "Latest: {version} · Windows and macOS · MIT license", "replay": "Replay", "demo": {"file": [["h", "# Inbox"], ["", ""], ["task", "- [ ] #task Finish the launch post 🔺 ⏳ 2026-11-02"], ["", ""]], "steps": [{"tool": "Claude Code", "title": "Claude Code", "lines": [{"k": "you", "t": "What's the most important task today? Do the first part only."}, {"k": "ai", "t": "The most important task today is \"Finish the launch post\" (P1).", "w": 1100}, {"k": "tool", "t": "● Write Knowledge/Launch post draft.md", "w": 900}, {"k": "file", "t": [["b", "  ### AI work log (Claude Code)"], ["", "  - Done: drafted the three-sentence post"], ["", "  - Result: Knowledge/Launch post draft.md"], ["muted", "  - Next: review the draft"]], "w": 1300}, {"k": "ai", "t": "Saved the draft, logged the work under the task, and stopped there.", "gap": true, "w": 1500}, {"k": "sys", "t": "Claude Code closed. Opening Codex in the same folder…", "gap": true, "w": 1500}]}, {"tool": "Codex", "title": "Codex", "hold": 2200, "lines": [{"k": "you", "t": "Where did we leave off?"}, {"k": "ai", "t": "We left off with a three-sentence launch post awaiting review.", "w": 1400}, {"k": "tool", "t": "● Edit Knowledge/Launch post draft.md", "w": 900}, {"k": "file", "t": [["", ""], ["b", "  ### AI work log (Codex)"], ["", "  - Done: reviewed the draft, saved v2"], ["", "  - Result: removed unverified claims"], ["muted", "  - Next: confirm the launch URL"]], "w": 1300}, {"k": "ai", "t": "I reviewed and revised the draft, removed unsupported claims, and logged the handoff.", "gap": true, "w": 2000}]}]}}</script>
+<script src="/assets/app.js" defer></script>
+</body>
+</html>

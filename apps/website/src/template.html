@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="{{html_lang}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{meta_title}}</title>
+<meta name="description" content="{{meta_desc}}">
+<meta name="theme-color" content="#060a13">
+<link rel="canonical" href="https://aizbrain.com{{path}}">
+<link rel="alternate" hreflang="en" href="https://aizbrain.com/">
+<link rel="alternate" hreflang="zh-TW" href="https://aizbrain.com/zh-TW/">
+<link rel="icon" href="/assets/logo-64.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aizbrain.com{{path}}">
+<meta property="og:title" content="{{meta_title}}">
+<meta property="og:description" content="{{meta_desc}}">
+<meta property="og:image" content="https://aizbrain.com/assets/og-{{lang}}.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body data-lang="{{lang}}">
+<a class="skip" href="#main">{{skip}}</a>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="{{path}}"><img src="/assets/logo-64.png" alt="" width="32" height="32"><span><b>AI</b>zBrain</span></a>
+    <nav class="nav-links" aria-label="{{nav_label}}">
+      <a href="#how">{{nav_how}}</a>
+      <a href="#product">{{nav_product}}</a>
+      <a href="#trust">{{nav_trust}}</a>
+      <a href="#pricing">{{nav_pricing}}</a>
+    </nav>
+    <div class="nav-end">
+      <a class="lang" href="{{other_path}}" hreflang="{{other_lang}}" lang="{{other_lang}}">{{other_name}}</a>
+      <a class="btn btn-line btn-sm" href="{{repo}}"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>GitHub</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-head">
+      <div class="eyebrow"><span>{{eyebrow_1}}</span><span>{{eyebrow_2}}</span><span>{{eyebrow_3}}</span></div>
+      <h1>{{h1}}</h1>
+      <p class="lead">{{lead}}</p>
+      <div class="cta">
+        <a class="btn btn-gold" data-download href="{{releases}}">{{cta_download}}</a>
+        <div class="copy"><span><i>$</i> npx aizbrain init</span><button type="button" data-copy="npx aizbrain init" data-done="{{copied}}">{{copy}}</button></div>
+      </div>
+      <p class="cta-note" data-version-note>{{cta_note}}</p>
+    </div>
+
+    <div class="demo" id="demo" aria-label="{{demo_label}}">
+      <div class="demo-bar" data-relay></div>
+      <div class="demo-grid">
+        <div class="term" aria-hidden="true"><div class="pane-title"><b data-term-title></b><span>~/my-second-brain</span></div><div data-term></div></div>
+        <div class="file" aria-hidden="true"><div class="pane-title"><b>{{demo_file}}</b><span>{{demo_file_note}}</span></div><div data-file></div></div>
+      </div>
+      <div class="demo-cap">{{demo_cap}}</div>
+    </div>
+    <noscript><p class="cta-note">{{demo_cap}}</p></noscript>
+  </div>
+</div>
+
+<section id="problem">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="kicker">{{problem_kicker}}</div><h2>{{problem_h}}</h2><p class="sub">{{problem_sub}}</p></div>
+    <div class="versus reveal">
+      <div class="vs"><h3>{{vs_bad_h}}</h3><ul><li>{{vs_bad_1}}</li><li>{{vs_bad_2}}</li><li>{{vs_bad_3}}</li></ul></div>
+      <div class="vs good"><h3>{{vs_good_h}}</h3><ul><li>{{vs_good_1}}</li><li>{{vs_good_2}}</li><li>{{vs_good_3}}</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="kicker">{{how_kicker}}</div><h2>{{how_h}}</h2></div>
+    <div class="steps reveal">
+      <article class="step"><div class="num">01</div><h3>{{s1_h}}</h3><p>{{s1_p}}</p><pre class="snippet">{{s1_code}}</pre></article>
+      <article class="step"><div class="num">02</div><h3>{{s2_h}}</h3><p>{{s2_p}}</p><pre class="snippet">{{s2_code}}</pre></article>
+      <article class="step"><div class="num">03</div><h3>{{s3_h}}</h3><p>{{s3_p}}</p><pre class="snippet">{{s3_code}}</pre></article>
+    </div>
+  </div>
+</section>
+
+<section id="tools" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>{{tools_h}}</h2><p class="sub">{{tools_sub}}</p></div>
+    <div class="tools reveal">
+      <div class="tool"><b>Claude Code</b><span class="pill hook">{{pill_hook}}</span></div>
+      <div class="tool"><b>Codex</b><span class="pill hook">{{pill_hook}}</span></div>
+      <div class="tool"><b>Gemini CLI</b><span class="pill hook">{{pill_hook}}</span></div>
+      <div class="tool"><b>Antigravity</b><span class="pill hook">{{pill_hook}}</span></div>
+      <div class="tool"><b>Grok Build</b><span class="pill hook">{{pill_hook}}</span></div>
+      <div class="tool"><b>OpenCode</b><span class="pill rule">{{pill_rule}}</span></div>
+      <div class="tool"><b>Qwen Code</b><span class="pill rule">{{pill_rule}}</span></div>
+      <div class="tool"><b>{{tool_mcp}}</b><span class="pill hook">MCP</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="product" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="kicker">{{product_kicker}}</div><h2>{{product_h}}</h2><p class="sub">{{product_sub}}</p></div>
+    <div class="reveal">
+      <div class="tabs" role="tablist" aria-label="{{product_kicker}}">
+        <button class="tab" role="tab" aria-selected="true" data-shot="today" data-cap="{{cap_today}}">{{tab_today}}</button>
+        <button class="tab" role="tab" aria-selected="false" data-shot="calendar" data-cap="{{cap_calendar}}">{{tab_calendar}}</button>
+        <button class="tab" role="tab" aria-selected="false" data-shot="board" data-cap="{{cap_board}}">{{tab_board}}</button>
+        <button class="tab" role="tab" aria-selected="false" data-shot="projects" data-cap="{{cap_projects}}">{{tab_projects}}</button>
+      </div>
+      <div class="shot"><img data-shot-img src="/assets/screens/today-{{lang}}.webp" width="1360" height="850" alt="{{shot_alt}}"></div>
+      <p class="shot-cap" data-shot-cap>{{cap_today}}</p>
+    </div>
+    <div class="mini reveal">
+      <div><h3>{{m1_h}}</h3><p>{{m1_p}}</p></div>
+      <div><h3>{{m2_h}}</h3><p>{{m2_p}}</p></div>
+      <div><h3>{{m3_h}}</h3><p>{{m3_p}}</p></div>
+      <div><h3>{{m4_h}}</h3><p>{{m4_p}}</p></div>
+      <div><h3>{{m5_h}}</h3><p>{{m5_p}}</p></div>
+      <div><h3>{{m6_h}}</h3><p>{{m6_p}}</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="trust" style="padding-top:0">
+  <div class="wrap trust">
+    <div class="reveal">
+      <div class="kicker">{{trust_kicker}}</div>
+      <h2 style="margin-bottom:26px">{{trust_h}}</h2>
+      <pre class="md-card">{{trust_code}}</pre>
+    </div>
+    <ul class="checks reveal">
+      <li><b>{{t1_h}}</b><span>{{t1_p}}</span></li>
+      <li><b>{{t2_h}}</b><span>{{t2_p}}</span></li>
+      <li><b>{{t3_h}}</b><span>{{t3_p}}</span></li>
+      <li><b>{{t4_h}}</b><span>{{t4_p}}</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="founder" style="padding-top:0">
+  <div class="wrap"><blockquote class="quote reveal" style="margin:0"><p>{{q1}}</p><p>{{q2}}</p><footer>{{q_by}}</footer></blockquote></div>
+</section>
+
+<section id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><div class="kicker">{{price_kicker}}</div><h2>{{price_h}}</h2><p class="sub">{{price_sub}}</p></div>
+    <table class="price reveal">
+      <thead><tr><th scope="col">{{price_col_1}}</th><th scope="col">{{price_col_2}}</th></tr></thead>
+      <tbody>
+        <tr><td>{{p1}}</td><td class="free">{{p_free}}</td></tr>
+        <tr><td>{{p2}}</td><td class="free">{{p_free}}</td></tr>
+        <tr><td>{{p3}}</td><td class="free">{{p_free}}</td></tr>
+        <tr><td>{{p4}}</td><td class="paid">{{p_paid}}</td></tr>
+      </tbody>
+    </table>
+    <p class="note reveal">{{price_note}}</p>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>{{faq_h}}</h2></div>
+    <div class="faq reveal">
+      <details><summary>{{f1_q}}</summary><p>{{f1_a}}</p></details>
+      <details><summary>{{f2_q}}</summary><p>{{f2_a}}</p></details>
+      <details><summary>{{f3_q}}</summary><p>{{f3_a}}</p></details>
+      <details><summary>{{f4_q}}</summary><p>{{f4_a}}</p></details>
+      <details><summary>{{f5_q}}</summary><p>{{f5_a}}</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="download">
+  <div class="wrap">
+    <h2 class="reveal">{{final_h}}</h2>
+    <p class="sub reveal">{{final_sub}}</p>
+    <div class="cta reveal">
+      <a class="btn btn-gold" data-dl="win" href="{{releases}}">{{dl_win}}</a>
+      <a class="btn btn-line" data-dl="mac" href="{{releases}}">{{dl_mac}}</a>
+    </div>
+    <p class="cta-note reveal">{{final_note}}</p>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <a class="brand" href="{{path}}" style="color:var(--text)"><img src="/assets/logo-64.png" alt="" width="24" height="24" style="width:24px;height:24px"><span><b>AI</b>zBrain</span></a>
+    <a href="{{repo}}">GitHub</a>
+    <a href="{{repo}}/releases">{{f_releases}}</a>
+    <a href="{{repo}}/issues">{{f_issues}}</a>
+    <a href="{{repo}}/blob/main/SECURITY.md">{{f_security}}</a>
+    {{f_extra}}
+    <span class="end">{{f_note}}</span>
+  </div>
+</footer>
+<script type="application/json" id="aiz-config">{{runtime}}</script>
+<script src="/assets/app.js" defer></script>
+</body>
+</html>
