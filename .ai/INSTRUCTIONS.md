@@ -12,6 +12,8 @@ reading, editing, calendar, board, backup, or recovery features.
 - `apps/desktop`: Tauri 2, React and Rust desktop application.
 - `packages/brain-core`: Markdown parsing, formatting, merge and task rules.
 - `packages/brain-ui`: framework-neutral calendar and repository helpers.
+- `packages/cli`: the `aizbrain` npm package (init, hooks, MCP server).
+- `apps/website`: aizbrain.com, a static site built by `apps/website/tools/build.py`.
 - `examples/sample-vault`: public synthetic Markdown fixtures only.
 - `docs`: public architecture, installation and contributor documentation.
 
@@ -24,6 +26,10 @@ npm run build
 npm run rust:test
 npm run desktop:installer
 ```
+
+## Deployment
+
+`apps/website` and `services/inbox-relay` ship from pushed commits with the maintainer's deploy tool. Commit `apps/website/public/` after rebuilding the site.
 
 ## Data and security rules
 

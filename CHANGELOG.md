@@ -2,7 +2,7 @@
 
 Older versions are on the [releases page](https://github.com/GsirGinRay/aizbrain/releases).
 
-## Unreleased
+## 0.9.5 (2026-11-02)
 
 - New `aizbrain` command: `npx aizbrain init` sets up an AI-handoff folder without the desktop app, with hooks and an MCP server.
 - New website at [aizbrain.com](https://aizbrain.com).
