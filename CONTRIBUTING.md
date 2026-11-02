@@ -27,7 +27,7 @@ Issues and pull requests are welcome, in Chinese or English.
 ## Releasing (maintainers)
 
 Installed apps poll the signed `latest.json` of the newest
-[GitHub Release](https://github.com/GsirGinRay/second-brain-workspace/releases)
+[GitHub Release](https://github.com/GsirGinRay/aizbrain/releases)
 at launch and every six hours. Pushing commits alone does not notify anyone.
 
 1. Bump the version in `package.json`, `apps/desktop/package.json`,

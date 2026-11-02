@@ -15,7 +15,7 @@ import { spawnSync } from "node:child_process";
 import { homedir } from "node:os";
 import { join, resolve } from "node:path";
 
-const REPO = "GsirGinRay/second-brain-workspace";
+const REPO = "GsirGinRay/aizbrain";
 const root = resolve(import.meta.dirname, "..");
 const config = JSON.parse(readFileSync(resolve(root, "apps/desktop/src-tauri/tauri.conf.json"), "utf8"));
 const version = config.version;
