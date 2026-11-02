@@ -2,6 +2,9 @@
 
 Older versions are on the [releases page](https://github.com/GsirGinRay/aizbrain/releases).
 
+## 0.9.6 (2026-11-02)
+- No changes to the app. The website and README now cover local files and the one-task-a-day habit.
+
 ## 0.9.5 (2026-11-02)
 
 - New `aizbrain` command: `npx aizbrain init` sets up an AI-handoff folder without the desktop app, with hooks and an MCP server.
