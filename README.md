@@ -55,7 +55,7 @@ Prefer an app? [Download for Windows or Mac](https://github.com/GsirGinRay/aizbr
 | OpenCode, Cursor, Windsurf, VS Code, Zed, Warp, goose, Amp, Roo Code, Kilo Code, Junie, Augment Code, Qwen Code | Rule files (`AGENTS.md`, `QWEN.md`) |
 | Claude Desktop and other MCP clients | `npx aizbrain mcp` |
 
-Any model works if its tool can read your folder. A web chat can't read files on your computer, so ChatGPT on the web only joins through a client that can. The model also needs to read files on its own; very small local models may not look. See [docs/ai-handoff.md](docs/ai-handoff.md) for the details.
+Any model works if its tool can read your folder. A web chat can't read files on your computer, so ChatGPT on the web only joins through a client that can. The model also needs to be able to read files. If it doesn't look on its own, tell it to read `AGENTS.md` first. See [docs/ai-handoff.md](docs/ai-handoff.md) for the details.
 
 ## The app
 

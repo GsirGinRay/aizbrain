@@ -52,15 +52,15 @@
       <p class="cta-note" data-version-note>支援 Windows 與 macOS · MIT 授權</p>
     </div>
 
-    <div class="demo" id="demo" aria-label="重播 Claude Code 透過 Markdown 檔把任務交接給 Codex 的過程">
+    <div class="demo" id="demo" aria-label="重播 Claude Code、Codex、Antigravity 和 Grok Build 透過 Markdown 檔交接任務的過程">
       <div class="demo-bar" data-relay></div>
       <div class="demo-grid">
         <div class="term" aria-hidden="true"><div class="pane-title"><b data-term-title></b><span>~/my-second-brain</span></div><div data-term></div></div>
         <div class="file" aria-hidden="true"><div class="pane-title"><b>收件匣/待辦.md</b><span>純 Markdown，就在你的電腦</span></div><div data-file></div></div>
       </div>
-      <div class="demo-cap">節錄自一次真實的接力，這次是 Claude Code 交給 Codex。Codex 只收到那句問話，其他都是從資料夾讀到的。換成其他 AI 工具也是一樣的用法。</div>
+      <div class="demo-cap">節錄自真實的交接紀錄。沒有人跟下一家 AI 重講背景，來龍去脈都是從資料夾讀到的。</div>
     </div>
-    <noscript><p class="cta-note">節錄自一次真實的接力，這次是 Claude Code 交給 Codex。Codex 只收到那句問話，其他都是從資料夾讀到的。換成其他 AI 工具也是一樣的用法。</p></noscript>
+    <noscript><p class="cta-note">節錄自真實的交接紀錄。沒有人跟下一家 AI 重講背景，來龍去脈都是從資料夾讀到的。</p></noscript>
   </div>
 </div>
 
@@ -99,7 +99,7 @@ Claude Code → 下一步：做成表格</pre></article>
 
 <section id="tools" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head reveal"><h2>任何一家 AI 模型都可以用。</h2><p class="sub">支援 hook 的工具會自動帶入脈絡；會讀 AGENTS.md 或其他規則檔的工具，打開資料夾就會讀到同一份說明。模型要能自己讀檔案，太小的本地模型可能不會去讀。</p></div>
+    <div class="sec-head reveal"><h2>任何一家 AI 模型都可以用。</h2><p class="sub">支援 hook 的工具會自動帶入脈絡；會讀 AGENTS.md 或其他規則檔的工具，打開資料夾就會讀到同一份說明。模型要能讀檔案；如果它沒有自己去讀，跟它說「先讀 AGENTS.md」就好。</p></div>
     <div class="tools reveal">
       <div class="tool"><b>Claude Code</b><span class="pill hook">hook＋規則檔</span></div>
       <div class="tool"><b>Codex</b><span class="pill hook">hook＋規則檔</span></div>
@@ -226,7 +226,7 @@ Claude Code → 下一步：做成表格</pre></article>
     <span class="end">MIT 授權 · 本站不使用 Cookie 或分析工具。</span>
   </div>
 </footer>
-<script type="application/json" id="aiz-config">{"lang": "zh-TW", "repoSlug": "GsirGinRay/aizbrain", "dlWin": "下載 Windows 版", "dlMac": "下載 Mac 版", "versionNote": "最新版 {version} · 支援 Windows 與 macOS · MIT 授權", "replay": "重播", "demo": {"file": [["h", "# 待辦"], ["", ""], ["task", "- [ ] #task 跑營收觀察名單 🔺 ⏳ 2026-11-02"], ["", ""]], "steps": [{"tool": "Claude Code", "title": "Claude Code", "lines": [{"k": "you", "t": "今天最重要的任務是什麼？只做第一步。"}, {"k": "ai", "t": "今天最重要的任務是「跑營收觀察名單」（P1）。", "w": 1100}, {"k": "tool", "t": "● 寫入 知識/營收觀察名單（虛構公司草稿）.md", "w": 900}, {"k": "file", "t": [["b", "  ### AI 工作紀錄（Claude Code）"], ["", "  - 做了什麼：存好三行觀察草稿"], ["", "  - 結果在哪：知識/營收觀察名單.md"], ["muted", "  - 下一步：確認草稿格式"]], "w": 1300}, {"k": "ai", "t": "草稿存好了，也在任務下寫了工作紀錄，到此停止。", "gap": true, "w": 1500}, {"k": "sys", "t": "關掉 Claude Code，在同一個資料夾打開 Codex……", "gap": true, "w": 1500}]}, {"tool": "Codex", "title": "Codex", "hold": 2200, "lines": [{"k": "you", "t": "做到哪了？"}, {"k": "ai", "t": "目前已完成三點營收觀察草稿，我接著做下一步。", "w": 1400}, {"k": "tool", "t": "● 修改 知識/營收觀察名單（虛構公司草稿）.md", "w": 900}, {"k": "file", "t": [["", ""], ["b", "  ### AI 工作紀錄（Codex）"], ["", "  - 做了什麼：補上待確認欄位"], ["", "  - 結果在哪：同一份草稿"], ["muted", "  - 下一步：取得代號與觀察期間"]], "w": 1300}, {"k": "ai", "t": "我已補上下一步所需的欄位，並寫回工作紀錄，現在停下來。", "gap": true, "w": 2000}]}]}}</script>
+<script type="application/json" id="aiz-config">{"lang": "zh-TW", "repoSlug": "GsirGinRay/aizbrain", "dlWin": "下載 Windows 版", "dlMac": "下載 Mac 版", "versionNote": "最新版 {version} · 支援 Windows 與 macOS · MIT 授權", "replay": "重播", "demo": {"file": [["h", "# 待辦"], ["", ""], ["task", "- [ ] #task 跑營收觀察名單 🔺 ⏳ 2026-11-02"], ["", ""]], "steps": [{"tool": "Claude Code", "title": "Claude Code", "lines": [{"k": "you", "t": "今天最重要的任務是什麼？只做第一步。"}, {"k": "ai", "t": "今天最重要的任務是「跑營收觀察名單」（P1）。", "w": 1100}, {"k": "tool", "t": "● 寫入 知識/營收觀察名單（虛構公司草稿）.md", "w": 900}, {"k": "file", "t": [["b", "  ### AI 工作紀錄（Claude Code）"], ["", "  - 做了什麼：存好三行觀察草稿"], ["", "  - 結果在哪：知識/營收觀察名單.md"], ["muted", "  - 下一步：確認草稿格式"]], "w": 1300}, {"k": "ai", "t": "草稿存好了，也在任務下寫了工作紀錄，到此停止。", "gap": true, "w": 1500}, {"k": "sys", "t": "關掉 Claude Code，在同一個資料夾打開 Codex……", "gap": true, "w": 1500}]}, {"tool": "Codex", "title": "Codex", "hold": 500, "lines": [{"k": "you", "t": "做到哪了？"}, {"k": "ai", "t": "目前已完成三點營收觀察草稿，我接著做下一步。", "w": 1400}, {"k": "tool", "t": "● 修改 知識/營收觀察名單（虛構公司草稿）.md", "w": 900}, {"k": "file", "t": [["", ""], ["b", "  ### AI 工作紀錄（Codex）"], ["", "  - 做了什麼：補上待確認欄位"], ["", "  - 結果在哪：同一份草稿"], ["muted", "  - 下一步：取得代號與觀察期間"]], "w": 1300}, {"k": "ai", "t": "我已補上下一步所需的欄位，並寫回工作紀錄，現在停下來。", "gap": true, "w": 2000}, {"k": "sys", "t": "關掉 Codex，在同一個資料夾打開 Antigravity……", "gap": true, "w": 1300}]}, {"tool": "Antigravity", "title": "Antigravity", "hold": 500, "lines": [{"k": "you", "t": "做到哪了？"}, {"k": "ai", "t": "「跑營收觀察名單」已由前兩位 AI 建立草稿並補齊待確認欄位，目前停在等待取得代號與觀察期間。", "w": 2400}, {"k": "sys", "t": "關掉 Antigravity，在同一個資料夾打開 Grok Build……", "gap": true, "w": 1200}]}, {"tool": "Grok Build", "title": "Grok Build", "hold": 2200, "lines": [{"k": "you", "t": "做到哪了？"}, {"k": "ai", "t": "營收觀察名單目前停在草稿，下一步是確認代號與觀察期間。", "w": 2600}]}]}}</script>
 <script src="/assets/app.js" defer></script>
 </body>
 </html>

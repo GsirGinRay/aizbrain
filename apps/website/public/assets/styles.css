@@ -71,7 +71,7 @@ code, pre { font-family: var(--mono); }
 
 /* relay demo */
 .demo { margin-top: 40px; border: 1px solid var(--line-strong); border-radius: 18px; background: #080e19; overflow: hidden; box-shadow: 0 40px 120px -30px rgba(46, 110, 255, .35), 0 0 0 1px rgba(255, 255, 255, .02) inset; }
-.demo-bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: var(--surface); border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
+.demo-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px 14px; background: var(--surface); border-bottom: 1px solid var(--line); overflow-x: auto; scrollbar-width: none; }
 .relay-step { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); color: var(--faint); font: 500 13px var(--sans); white-space: nowrap; background: transparent; transition: color .25s, border-color .25s, background .25s; }
 .relay-step i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: .7; }
 .relay-step.on { color: #17120a; background: var(--gold); border-color: var(--gold); }

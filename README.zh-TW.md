@@ -57,7 +57,7 @@ claude          # 也可以用 codex、grok、opencode……
 | OpenCode、Cursor、Windsurf、VS Code、Zed、Warp、goose、Amp、Roo Code、Kilo Code、Junie、Augment Code、Qwen Code | 規則檔（`AGENTS.md`、`QWEN.md`） |
 | Claude Desktop 等支援 MCP 的工具 | `npx aizbrain mcp` |
 
-只要工具讀得到你的資料夾，換哪個模型都可以。網頁聊天看不到你電腦裡的檔案，所以網頁版 ChatGPT 要透過讀得到檔案的工具才能接上；模型也要能自己讀檔案，太小的本地模型可能不會去讀。
+只要工具讀得到你的資料夾，換哪個模型都可以。網頁聊天看不到你電腦裡的檔案，所以網頁版 ChatGPT 要透過讀得到檔案的工具才能接上；模型也要能讀檔案；如果它沒有自己去讀，跟它說「先讀 `AGENTS.md`」就好。
 
 ## App 畫面
 

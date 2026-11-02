@@ -52,15 +52,15 @@
       <p class="cta-note" data-version-note>Windows and macOS · MIT license</p>
     </div>
 
-    <div class="demo" id="demo" aria-label="A replay of Claude Code handing a task to Codex through a Markdown file">
+    <div class="demo" id="demo" aria-label="A replay of Claude Code, Codex, Antigravity and Grok Build handing off a task through a Markdown file">
       <div class="demo-bar" data-relay></div>
       <div class="demo-grid">
         <div class="term" aria-hidden="true"><div class="pane-title"><b data-term-title></b><span>~/my-second-brain</span></div><div data-term></div></div>
         <div class="file" aria-hidden="true"><div class="pane-title"><b>Inbox/Inbox.md</b><span>plain Markdown, on your disk</span></div><div data-file></div></div>
       </div>
-      <div class="demo-cap">Condensed from a real run, here from Claude Code to Codex. Codex was told nothing except the question: everything else came from the folder. You can use other AI tools the same way.</div>
+      <div class="demo-cap">Condensed from real sessions. Nobody re-explained the background to the next AI: the context came from the folder.</div>
     </div>
-    <noscript><p class="cta-note">Condensed from a real run, here from Claude Code to Codex. Codex was told nothing except the question: everything else came from the folder. You can use other AI tools the same way.</p></noscript>
+    <noscript><p class="cta-note">Condensed from real sessions. Nobody re-explained the background to the next AI: the context came from the folder.</p></noscript>
   </div>
 </div>
 
@@ -99,7 +99,7 @@ Claude Code → next: tighten intro</pre></article>
 
 <section id="tools" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head reveal"><h2>Use any AI model you like.</h2><p class="sub">Hook-based tools get context automatically. Tools that read AGENTS.md or another rule file find the same instructions when they open the folder. The model needs to be able to read files; very small local models may not look.</p></div>
+    <div class="sec-head reveal"><h2>Use any AI model you like.</h2><p class="sub">Hook-based tools get context automatically. Tools that read AGENTS.md or another rule file find the same instructions when they open the folder. The model needs to be able to read files. If it doesn’t look on its own, tell it to read AGENTS.md first.</p></div>
     <div class="tools reveal">
       <div class="tool"><b>Claude Code</b><span class="pill hook">hooks + rules</span></div>
       <div class="tool"><b>Codex</b><span class="pill hook">hooks + rules</span></div>
@@ -226,7 +226,7 @@ Claude Code → next: tighten intro</pre></article>
     <span class="end">MIT license · This site uses no cookies or analytics.</span>
   </div>
 </footer>
-<script type="application/json" id="aiz-config">{"lang": "en", "repoSlug": "GsirGinRay/aizbrain", "dlWin": "Download for Windows", "dlMac": "Download for Mac", "versionNote": "Latest: {version} · Windows and macOS · MIT license", "replay": "Replay", "demo": {"file": [["h", "# Inbox"], ["", ""], ["task", "- [ ] #task Finish the launch post 🔺 ⏳ 2026-11-02"], ["", ""]], "steps": [{"tool": "Claude Code", "title": "Claude Code", "lines": [{"k": "you", "t": "What's the most important task today? Do the first part only."}, {"k": "ai", "t": "The most important task today is \"Finish the launch post\" (P1).", "w": 1100}, {"k": "tool", "t": "● Write Knowledge/Launch post draft.md", "w": 900}, {"k": "file", "t": [["b", "  ### AI work log (Claude Code)"], ["", "  - Done: drafted the three-sentence post"], ["", "  - Result: Knowledge/Launch post draft.md"], ["muted", "  - Next: review the draft"]], "w": 1300}, {"k": "ai", "t": "Saved the draft, logged the work under the task, and stopped there.", "gap": true, "w": 1500}, {"k": "sys", "t": "Claude Code closed. Opening Codex in the same folder…", "gap": true, "w": 1500}]}, {"tool": "Codex", "title": "Codex", "hold": 2200, "lines": [{"k": "you", "t": "Where did we leave off?"}, {"k": "ai", "t": "We left off with a three-sentence launch post awaiting review.", "w": 1400}, {"k": "tool", "t": "● Edit Knowledge/Launch post draft.md", "w": 900}, {"k": "file", "t": [["", ""], ["b", "  ### AI work log (Codex)"], ["", "  - Done: reviewed the draft, saved v2"], ["", "  - Result: removed unverified claims"], ["muted", "  - Next: confirm the launch URL"]], "w": 1300}, {"k": "ai", "t": "I reviewed and revised the draft, removed unsupported claims, and logged the handoff.", "gap": true, "w": 2000}]}]}}</script>
+<script type="application/json" id="aiz-config">{"lang": "en", "repoSlug": "GsirGinRay/aizbrain", "dlWin": "Download for Windows", "dlMac": "Download for Mac", "versionNote": "Latest: {version} · Windows and macOS · MIT license", "replay": "Replay", "demo": {"file": [["h", "# Inbox"], ["", ""], ["task", "- [ ] #task Finish the launch post 🔺 ⏳ 2026-11-02"], ["", ""]], "steps": [{"tool": "Claude Code", "title": "Claude Code", "lines": [{"k": "you", "t": "What's the most important task today? Do the first part only."}, {"k": "ai", "t": "The most important task today is \"Finish the launch post\" (P1).", "w": 1100}, {"k": "tool", "t": "● Write Knowledge/Launch post draft.md", "w": 900}, {"k": "file", "t": [["b", "  ### AI work log (Claude Code)"], ["", "  - Done: drafted the three-sentence post"], ["", "  - Result: Knowledge/Launch post draft.md"], ["muted", "  - Next: review the draft"]], "w": 1300}, {"k": "ai", "t": "Saved the draft, logged the work under the task, and stopped there.", "gap": true, "w": 1500}, {"k": "sys", "t": "Claude Code closed. Opening Codex in the same folder…", "gap": true, "w": 1500}]}, {"tool": "Codex", "title": "Codex", "hold": 500, "lines": [{"k": "you", "t": "Where did we leave off?"}, {"k": "ai", "t": "We left off with a three-sentence launch post awaiting review.", "w": 1400}, {"k": "tool", "t": "● Edit Knowledge/Launch post draft.md", "w": 900}, {"k": "file", "t": [["", ""], ["b", "  ### AI work log (Codex)"], ["", "  - Done: reviewed the draft, saved v2"], ["", "  - Result: removed unverified claims"], ["muted", "  - Next: confirm the launch URL"]], "w": 1300}, {"k": "ai", "t": "I reviewed and revised the draft, removed unsupported claims, and logged the handoff.", "gap": true, "w": 2000}, {"k": "sys", "t": "Codex closed. Opening Antigravity in the same folder…", "gap": true, "w": 1300}]}, {"tool": "Antigravity", "title": "Antigravity", "hold": 500, "lines": [{"k": "you", "t": "Where did we leave off?"}, {"k": "ai", "t": "We left off on “Finish the launch post”: Codex reviewed the draft and saved v2, leaving the launch URL to be confirmed.", "w": 2400}, {"k": "sys", "t": "Antigravity closed. Opening Grok Build in the same folder…", "gap": true, "w": 1200}]}, {"tool": "Grok Build", "title": "Grok Build", "hold": 2200, "lines": [{"k": "you", "t": "Where did we leave off?"}, {"k": "ai", "t": "We left off after the launch post was reviewed and unverified claims were removed. Next is confirming the launch URL.", "w": 2600}]}]}}</script>
 <script src="/assets/app.js" defer></script>
 </body>
 </html>
