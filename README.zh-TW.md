@@ -6,7 +6,7 @@
 
 **AI 模型可以換，工作流程不能換。**
 
-免費、開源，存在你自己電腦裡。Claude、Codex、Gemini 和下一個最強的模型，都共用同一個第二大腦。
+免費、開源，存在你自己電腦裡。今天用哪一家、下一個最強的模型是誰，都共用同一個第二大腦。
 
 [官網](https://aizbrain.com/zh-TW/) · [下載](https://github.com/GsirGinRay/aizbrain/releases/latest) · [交接怎麼運作](docs/ai-write-back-plan.md) · [English](README.md)
 
@@ -31,7 +31,7 @@ Claude 做到一半額度用完？在同一個資料夾打開另一家 AI，問�
 ```bash
 npx aizbrain init my-second-brain
 cd my-second-brain
-claude          # 也可以用 codex、gemini……
+claude          # 也可以用 codex、grok、opencode……
 ```
 
 問一句「今天最重要的任務是什麼？」，再換一家工具問「做到哪了？」。不用註冊，也不會上傳任何東西。
@@ -53,11 +53,11 @@ claude          # 也可以用 codex、gemini……
 
 | 工具 | 接法 |
 | --- | --- |
-| Claude Code、Grok Build、Codex、Gemini CLI、Antigravity | hook 加規則檔 |
-| OpenCode、Qwen Code 等 | 規則檔 |
+| Claude Code、Grok Build、Codex、Antigravity | hook 加規則檔 |
+| OpenCode、Cursor、Windsurf、VS Code、Zed、Warp、goose、Amp、Roo Code、Kilo Code、Junie、Augment Code、Qwen Code | 規則檔（`AGENTS.md`、`QWEN.md`） |
 | Claude Desktop 等支援 MCP 的工具 | `npx aizbrain mcp` |
 
-網頁聊天看不到你電腦裡的檔案，所以網頁版 ChatGPT 要透過讀得到檔案的工具才能接上。
+只要工具讀得到你的資料夾，換哪個模型都可以。網頁聊天看不到你電腦裡的檔案，所以網頁版 ChatGPT 要透過讀得到檔案的工具才能接上；模型也要能自己讀檔案，太小的本地模型可能不會去讀。
 
 ## App 畫面
 
@@ -132,7 +132,7 @@ claude          # 也可以用 codex、gemini……
 <App>\second-brain-workspace.exe --aizbrain-hook install claude <你的資料夾>
 ```
 
-把 `claude` 換成 `codex`、`gemini` 或 `antigravity`；把 `install` 換成 `uninstall` 就能移除。
+把 `claude` 換成 `codex` 或 `antigravity`；把 `install` 換成 `uninstall` 就能移除。
 
 ## 參與開發
 

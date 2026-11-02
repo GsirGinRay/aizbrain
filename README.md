@@ -6,7 +6,7 @@
 
 **Models change. Your workflow doesn't.**
 
-The free, local second brain that Claude, Codex, Gemini and the next best model all share.
+The free, local second brain that every AI model shares, including the next best one.
 
 [Website](https://aizbrain.com) · [Download](https://github.com/GsirGinRay/aizbrain/releases/latest) · [How the handoff works](docs/ai-handoff.md) · [繁體中文](README.zh-TW.md)
 
@@ -27,7 +27,7 @@ It's also a task manager built around one habit: focus on one most important tas
 ```bash
 npx aizbrain init my-second-brain
 cd my-second-brain
-claude          # or codex, gemini, ...
+claude          # or codex, grok, opencode, ...
 ```
 
 Ask "What's the most important task today?", then switch tools and ask "Where did we leave off?". No account, and nothing is uploaded.
@@ -51,11 +51,11 @@ Prefer an app? [Download for Windows or Mac](https://github.com/GsirGinRay/aizbr
 
 | Tool | How it connects |
 | --- | --- |
-| Claude Code, Grok Build, Codex, Gemini CLI, Antigravity | Hooks and rule files |
-| OpenCode, Qwen Code and similar | Rule files |
+| Claude Code, Grok Build, Codex, Antigravity | Hooks and rule files |
+| OpenCode, Cursor, Windsurf, VS Code, Zed, Warp, goose, Amp, Roo Code, Kilo Code, Junie, Augment Code, Qwen Code | Rule files (`AGENTS.md`, `QWEN.md`) |
 | Claude Desktop and other MCP clients | `npx aizbrain mcp` |
 
-A web chat can't read files on your computer, so ChatGPT on the web only joins through a client that can. See [docs/ai-handoff.md](docs/ai-handoff.md) for the details.
+Any model works if its tool can read your folder. A web chat can't read files on your computer, so ChatGPT on the web only joins through a client that can. The model also needs to read files on its own; very small local models may not look. See [docs/ai-handoff.md](docs/ai-handoff.md) for the details.
 
 ## The app
 
@@ -130,7 +130,7 @@ One feature is paid, because it depends on a hosted service: **today's list on y
 <App>\second-brain-workspace.exe --aizbrain-hook install claude <your folder>
 ```
 
-Replace `claude` with `codex`, `gemini` or `antigravity`, and `install` with `uninstall` to remove them.
+Replace `claude` with `codex` or `antigravity`, and `install` with `uninstall` to remove them.
 
 ## Contributing
 

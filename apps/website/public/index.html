@@ -99,15 +99,25 @@ Claude Code → next: tighten intro</pre></article>
 
 <section id="tools" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head reveal"><h2>Use any AI model you like.</h2><p class="sub">Hook-based tools get context automatically. Tools with rule files read the same instructions when they open the folder.</p></div>
+    <div class="sec-head reveal"><h2>Use any AI model you like.</h2><p class="sub">Hook-based tools get context automatically. Tools that read AGENTS.md or another rule file find the same instructions when they open the folder. The model needs to be able to read files; very small local models may not look.</p></div>
     <div class="tools reveal">
       <div class="tool"><b>Claude Code</b><span class="pill hook">hooks + rules</span></div>
       <div class="tool"><b>Codex</b><span class="pill hook">hooks + rules</span></div>
-      <div class="tool"><b>Gemini CLI</b><span class="pill hook">hooks + rules</span></div>
       <div class="tool"><b>Antigravity</b><span class="pill hook">hooks + rules</span></div>
       <div class="tool"><b>Grok Build</b><span class="pill hook">hooks + rules</span></div>
       <div class="tool"><b>OpenCode</b><span class="pill rule">rule file</span></div>
       <div class="tool"><b>Qwen Code</b><span class="pill rule">rule file</span></div>
+      <div class="tool"><b>Cursor</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Windsurf</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>VS Code</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Zed</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Warp</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>goose</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Amp</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Roo Code</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Kilo Code</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Junie</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Augment Code</b><span class="pill rule">AGENTS.md</span></div>
       <div class="tool"><b>Any MCP client</b><span class="pill hook">MCP</span></div>
     </div>
   </div>
@@ -185,7 +195,7 @@ Claude Code → next: tighten intro</pre></article>
     <div class="faq reveal">
       <details><summary>Windows says “protected your PC”. Is it safe?</summary><p>Windows shows this for new apps without a paid code-signing certificate. Click <b>More info</b>, then <b>Run anyway</b>; you only see it on first install. On a Mac, use <b>System Settings → Privacy &amp; Security → Open Anyway</b>. Updates are checked against a public key built into the app, and all the source code is on GitHub.</p></details>
       <details><summary>Do I need the desktop app for the AI handoff?</summary><p>No. <code>npx aizbrain init</code> sets up a folder with Node.js alone. The app adds the calendar, board, notifications and phone inbox on the same files.</p></details>
-      <details><summary>Can ChatGPT on the web read my folder?</summary><p>No, a web chat can’t see files on your computer. Use a tool that can, such as Codex, Claude Code or Gemini CLI, or connect a client through the MCP server.</p></details>
+      <details><summary>Can ChatGPT on the web read my folder?</summary><p>No, a web chat can’t see files on your computer. Use a tool that can, such as Codex, Claude Code or Antigravity, or connect a client through the MCP server.</p></details>
       <details><summary>Does it read my AI conversations?</summary><p>No. Hooks read only your folder, never the conversation. Your AI provider’s own privacy terms still apply to whatever that tool reads.</p></details>
       <details><summary>Can I use it with Obsidian?</summary><p>Yes. Repeat rules and similar tokens follow Obsidian Tasks, and the same folder can be open in both.</p></details>
     </div>

@@ -99,15 +99,25 @@ Claude Code → 下一步：做成表格</pre></article>
 
 <section id="tools" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head reveal"><h2>任何一家 AI 模型都可以用。</h2><p class="sub">支援 hook 的工具會自動帶入脈絡；有規則檔的工具，打開資料夾就會讀到同一份說明。</p></div>
+    <div class="sec-head reveal"><h2>任何一家 AI 模型都可以用。</h2><p class="sub">支援 hook 的工具會自動帶入脈絡；會讀 AGENTS.md 或其他規則檔的工具，打開資料夾就會讀到同一份說明。模型要能自己讀檔案，太小的本地模型可能不會去讀。</p></div>
     <div class="tools reveal">
       <div class="tool"><b>Claude Code</b><span class="pill hook">hook＋規則檔</span></div>
       <div class="tool"><b>Codex</b><span class="pill hook">hook＋規則檔</span></div>
-      <div class="tool"><b>Gemini CLI</b><span class="pill hook">hook＋規則檔</span></div>
       <div class="tool"><b>Antigravity</b><span class="pill hook">hook＋規則檔</span></div>
       <div class="tool"><b>Grok Build</b><span class="pill hook">hook＋規則檔</span></div>
       <div class="tool"><b>OpenCode</b><span class="pill rule">規則檔</span></div>
       <div class="tool"><b>Qwen Code</b><span class="pill rule">規則檔</span></div>
+      <div class="tool"><b>Cursor</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Windsurf</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>VS Code</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Zed</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Warp</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>goose</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Amp</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Roo Code</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Kilo Code</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Junie</b><span class="pill rule">AGENTS.md</span></div>
+      <div class="tool"><b>Augment Code</b><span class="pill rule">AGENTS.md</span></div>
       <div class="tool"><b>支援 MCP 的工具</b><span class="pill hook">MCP</span></div>
     </div>
   </div>
@@ -185,7 +195,7 @@ Claude Code → 下一步：做成表格</pre></article>
     <div class="faq reveal">
       <details><summary>Windows 跳出「已保護您的電腦」，安全嗎？</summary><p>新軟體沒有付費的程式碼簽章憑證，Windows 就會這樣提醒。按<b>其他資訊</b>，再按<b>仍要執行</b>就好，只有第一次安裝會看到。Mac 請到<b>系統設定 → 隱私權與安全性 → 強制打開</b>。更新會用 App 內建的公開金鑰驗證，全部程式碼也都放在 GitHub 上。</p></details>
       <details><summary>一定要裝桌面 App 才能交接嗎？</summary><p>不用。會用命令列的話，有 Node.js 就能打 <code>npx aizbrain init</code>。App 是在同一批檔案上，多了日曆、看板、通知和手機收件匣。</p></details>
-      <details><summary>網頁版 ChatGPT 讀得到我的資料夾嗎？</summary><p>讀不到，網頁聊天看不到你電腦裡的檔案。請用讀得到檔案的工具，像是 Codex、Claude Code、Gemini CLI，或透過 MCP 伺服器連接。</p></details>
+      <details><summary>網頁版 ChatGPT 讀得到我的資料夾嗎？</summary><p>讀不到，網頁聊天看不到你電腦裡的檔案。請用讀得到檔案的工具，像是 Codex、Claude Code、Antigravity，或透過 MCP 伺服器連接。</p></details>
       <details><summary>它會讀我跟 AI 的對話嗎？</summary><p>不會。hook 只讀你的資料夾，不讀對話。不過 AI 工具讀到的內容，仍然適用各家 AI 自己的隱私條款。</p></details>
       <details><summary>可以跟 Obsidian 一起用嗎？</summary><p>可以。重複規則等標記沿用 Obsidian Tasks 的格式，同一個資料夾可以兩邊一起開。</p></details>
     </div>
