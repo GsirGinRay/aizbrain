@@ -20,6 +20,8 @@ The free, local second brain that Claude, Codex, Gemini and the next best model 
 
 Claude runs out halfway through? Open another AI in the same folder and ask where things stand. Your tasks, context and AI work logs live in ordinary Markdown on your computer, so nothing is trapped in a chat window.
 
+It's also a task manager built around one habit: focus on one most important task a day. And because the files are on your own disk, there's no server to wait for, and the app works offline.
+
 ## Try it in 30 seconds
 
 ```bash
